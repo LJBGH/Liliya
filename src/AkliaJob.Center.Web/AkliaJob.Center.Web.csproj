@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\SocialMED-260\Desktop\MyStore\AkliaJob\src\AkliaJob.Center.Web\AkliaJob.Center.Web.xml</DocumentationFile>
+    <OutputPath></OutputPath>
+    <NoWarn>1701;1702;1591;</NoWarn>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
+    <PackageReference Include="Microsoft.DotNet.PlatformAbstractions" Version="3.1.6" />
+    <PackageReference Include="NSwag.Annotations" Version="13.13.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AkliaJob.AutoMapper\AkliaJob.AutoMapper.csproj" />
+    <ProjectReference Include="..\AkliaJob.Consul\AkliaJob.Consul.csproj" />
+    <ProjectReference Include="..\AkliaJob.Serilog\AkliaJob.Serilog.csproj" />
+    <ProjectReference Include="..\AkliaJob.Services\AkliaJob.Services.csproj" />
+    <ProjectReference Include="..\AkliaJob.Shared\AkliaJob.Shared.csproj" />
+    <ProjectReference Include="..\AkliaJob.Swagger\AkliaJob.Swagger.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AkliaJob.Center.Web.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AkliaJob.Center.Web</name>
+    </assembly>
+    <members>
+        <member name="T:AkliaJob.Center.Web.Controllers.HealthController">
+            <summary>
+            Consul健康检测
+            </summary>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.HealthController.Get">
+            <summary>
+            健康监测
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AkliaJob.Center.Web.Controllers.ScheduleController">
+            <summary>
+            任务计划管理
+            </summary>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.StartScheduleAsync">
+            <summary>
+            开启任务调度
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.StopScheduleAsync">
+            <summary>
+            停止任务调度
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.InsertAsync(AkliaJob.Dto.Schedule.ScheduleInputDto)">
+            <summary>
+            添加一条任务计划
+            </summary>
+            <param name="inputDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.ExecuteAsync(System.Guid)">
+            <summary>
+            执行任务
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.StopAsync(System.Guid)">
+            <summary>
+            停止任务
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.ResumeAsync(System.Guid)">
+            <summary>
+            恢复任务
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.Controllers.ScheduleController.GetAllAsync">
+            <summary>
+            获取有所计划任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Center.Web.StartupModule.CommonExtendModule.AddCommonService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            公共拓展模块注入
+            </summary>
+        </member>
+        <member name="M:AkliaJob.Center.Web.StartupModule.CommonExtendModule.AddJobService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Job定时任务注入
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="T:AkliaJob.Center.Web.StartupModule.MiddlewareModule">
+            <summary>
+            自定义中间件拓展
+            </summary>
+        </member>
+    </members>
+</doc>
