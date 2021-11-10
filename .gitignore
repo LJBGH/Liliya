@@ -22,3 +22,9 @@
 /src/Liliya.Test/bin
 /src/Liliya.Test/obj
 /.vs
+/src/Liliya.Redis/obj
+/src/Liliya.Redis/bin
+/src/Liliya.Common/bin
+/src/Liliya.Common/obj
+/src/Liliya.WebSockets/bin
+/src/Liliya.WebSockets/obj
