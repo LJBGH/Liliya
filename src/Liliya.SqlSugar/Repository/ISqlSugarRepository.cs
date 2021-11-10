@@ -80,6 +80,12 @@ namespace Liliya.SqlSugar.Repository
         #endregion
 
         #region   Delete删除
+        /// <summary>
+        /// 根据Id删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        Task<AjaxResult> DeleteAsync<Tkey>(Tkey id);
 
         /// <summary>
         /// 根据实体删除
@@ -102,6 +108,9 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         Task<AjaxResult> DeleteByLambdaAsync(Expression<Func<T, bool>> expression);
         #endregion
+
+     
+
 
         #region   Query查询
 

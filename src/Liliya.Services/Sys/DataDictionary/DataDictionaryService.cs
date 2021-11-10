@@ -51,10 +51,7 @@ namespace Liliya.Services.Sys.DataDictionary
         public async Task<AjaxResult> DeleteAsync(Guid id)
         {
             id.NotNull(nameof(id));
-            var data = await _dataDictionaryRepository.GetByIdAsync(id);
-            if (data == null)
-                return new AjaxResult("该数据字典不存在", AjaxResultType.Fail);
-            return await _dataDictionaryRepository.DeleteByLambdaAsync(x => x.Id == id);
+            return await _dataDictionaryRepository.DeleteAsync(id);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Liliya.Shared
@@ -167,5 +168,16 @@ namespace Liliya.Shared
                 return entitys;
             }
         }
+
+
+        //public static Expression<Func<T, bool>> CheckQueryRange<T>()
+        //{
+        //    List<T> result = new List<T>();
+        //    //判断T是否继承ISpftDelete接口
+        //    if (typeof(ISoftDelete).IsAssignableFrom(typeof(T)))
+        //    {
+        //        Expression<Func<T, bool>> exp = new Expression<Func<T, bool>>();
+        //    }
+        //}
     }
 }

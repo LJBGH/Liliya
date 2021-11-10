@@ -172,7 +172,34 @@ namespace Liliya.SqlSugar.Repository
 
         #endregion
 
+
         #region   Delete删除
+
+        /// <summary>
+        /// 根据Id删除
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public async Task<AjaxResult> DeleteAsync<Tkey>(Tkey id) 
+        {
+            id.NotNull(nameof(id));
+            var entity = await this.GetByIdAsync(id);
+            if (entity == null)
+                return new AjaxResult("对象不存在，删除失败", AjaxResultType.Fail);
+
+            var entity1 = entity.CheckDelete(out bool isSoft);
+            if (isSoft)
+            {
+                var count = await _dbContext.Updateable(entity).ExecuteCommandAsync();
+                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
+            }
+            else 
+            {
+                var count = await _dbContext.Deleteable(entity).ExecuteCommandAsync();
+                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
+            }
+        }
+
         /// <summary>
         /// 单条删除
         /// </summary>
@@ -224,10 +251,11 @@ namespace Liliya.SqlSugar.Repository
         public async Task<AjaxResult> DeleteByLambdaAsync(Expression<Func<T, bool>> expression)
         {
             expression.NotNull(nameof(expression));
-            expression.NotNull(nameof(expression));
             try
             {
                 var entitys = await _dbContext.Queryable<T>().Where(expression).ToListAsync();
+                if(entitys==null)
+                    return new AjaxResult("删除失败，对象不存在",  AjaxResultType.Fail);
                 entitys = entitys.CheckDeleteRange<T>(out bool isSoft);
                 if (isSoft)
                 {

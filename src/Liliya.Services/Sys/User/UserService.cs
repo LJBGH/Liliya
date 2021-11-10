@@ -50,7 +50,7 @@ namespace Liliya.Services.Sys.User
         public async Task<AjaxResult> DeleteAsync(Guid id)
         {
             id.NotNull(nameof(id));
-            return await _userRepository.DeleteByLambdaAsync(x=>x.Id == id);
+            return await _userRepository.DeleteAsync(id);
         }
 
 
