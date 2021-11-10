@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{CB7686D5-F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AkliaJob.Test", "src\AkliaJob.Test\AkliaJob.Test.csproj", "{167B8570-5FEF-49DA-BBA6-CFA09DA5A0C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AkliaJob.Core.API", "src\AkliaJob.Core.API\AkliaJob.Core.API.csproj", "{C4027A5B-B856-4255-BA97-0466F4C01CF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{167B8570-5FEF-49DA-BBA6-CFA09DA5A0C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{167B8570-5FEF-49DA-BBA6-CFA09DA5A0C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{167B8570-5FEF-49DA-BBA6-CFA09DA5A0C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4027A5B-B856-4255-BA97-0466F4C01CF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4027A5B-B856-4255-BA97-0466F4C01CF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4027A5B-B856-4255-BA97-0466F4C01CF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4027A5B-B856-4255-BA97-0466F4C01CF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{101A324E-2229-41C5-95F6-433EFBB2CDF6} = {AA3A8082-A4E7-4AE7-A551-2C1C51A634DD}
 		{D7D39866-55D2-420B-87CC-1D18F93EA61D} = {AA3A8082-A4E7-4AE7-A551-2C1C51A634DD}
 		{167B8570-5FEF-49DA-BBA6-CFA09DA5A0C0} = {CB7686D5-FE6E-49AB-A4D3-E604C23F3839}
+		{C4027A5B-B856-4255-BA97-0466F4C01CF6} = {2BBB923D-B47B-48A6-952B-AF0AC18B886C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F28A3CD1-2D22-403B-93BD-B0A8B65E75E2}

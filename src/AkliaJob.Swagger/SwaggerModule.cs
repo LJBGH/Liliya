@@ -57,7 +57,7 @@ namespace AkliaJob.Swagger
         {
             app.UseSwagger(x=> 
             {
-                x.RouteTemplate = "doc/AkliaJob.Center.Web/{documentName}/swagger.json";
+                x.RouteTemplate = "doc/AkliaJob.Core.API/{documentName}/swagger.json";
             });
             app.UseSwaggerUI(c => 
             {

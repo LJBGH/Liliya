@@ -4,7 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>AkliaJob.Center.Web</ActiveDebugProfile>
-    <NameOfLastUsedPublishProfile>C:\Users\SocialMED-260\Desktop\MyStore\AkliaJob\src\AkliaJob.Center.Web\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
+    <ActiveDebugProfile>AkliaJob.Core.API</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

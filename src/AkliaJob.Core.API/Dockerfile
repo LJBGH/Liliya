@@ -14,4 +14,4 @@ RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shang
 
 COPY . .
 
-ENTRYPOINT ["dotnet", "AkliaJob.Center.Web.dll"]
+ENTRYPOINT ["dotnet", "AkliaJob.Core.API.dll"]

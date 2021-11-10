@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using AkliaJob.AutoMapper;
 using AkliaJob.SqlSugar.Repository;
 
-namespace AkliaJob.Center.Web.StartupModule
+namespace AkliaJob.Core.API.Startups
 {
 
     public static class CommonExtendModule

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AkliaJob.Core.API</name>
+    </assembly>
+    <members>
+        <member name="T:AkliaJob.Core.API.Controllers.HealthController">
+            <summary>
+            Consul健康检测
+            </summary>
+        </member>
+        <member name="M:AkliaJob.Core.API.Controllers.HealthController.Get">
+            <summary>
+            健康监测
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AkliaJob.Core.API.Startups.CommonExtendModule.AddCommonService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            公共拓展模块注入
+            </summary>
+        </member>
+        <member name="T:AkliaJob.Core.API.Startups.MiddlewareModule">
+            <summary>
+            自定义中间件拓展
+            </summary>
+        </member>
+    </members>
+</doc>

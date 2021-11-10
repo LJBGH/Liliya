@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AkliaJob.Center.Web.Controllers
+namespace AkliaJob.Core.API.Controllers
 {   /// <summary>
     /// Consul健康检测
     /// </summary>

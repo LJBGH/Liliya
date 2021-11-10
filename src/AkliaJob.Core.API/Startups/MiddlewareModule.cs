@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AkliaJob.Center.Web.StartupModule
+namespace AkliaJob.Core.API.Startups
 {
     /// <summary>
     /// 自定义中间件拓展

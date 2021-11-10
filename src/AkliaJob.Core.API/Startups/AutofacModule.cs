@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace AkliaJob.Center.Web.StartupModule
+namespace AkliaJob.Core.API.Startups
 {
     public static class AutofacModule
     {

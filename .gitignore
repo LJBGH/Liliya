@@ -26,3 +26,6 @@
 /src/AkliaJob.TaskService/bin
 /src/AkliaJob.Test/bin
 /src/AkliaJob.Test/obj
+/src/AkliaJob.Core.API/bin
+/src/AkliaJob.Core.API/Logs
+/src/AkliaJob.Core.API/obj

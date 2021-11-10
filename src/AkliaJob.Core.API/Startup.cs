@@ -1,4 +1,4 @@
-using AkliaJob.Center.Web.StartupModule;
+using AkliaJob.Core.API.Startups;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using AkliaJob.Shared;
 
-namespace AkliaJob.Center.Web
+namespace AkliaJob.Core.API
 {
     public class Startup
     {

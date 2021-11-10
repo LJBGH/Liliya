@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using AkliaJob.Serilog;
 
-namespace AkliaJob.Center.Web
+namespace AkliaJob.Core.API
 {
     public class Program
     {
