@@ -11,7 +11,7 @@ namespace Liliya.Shared
         public const string UpdateSuccess = "修改成功";
         public const string UpdateFail = "修改失败";
         public const string DeleteSuccess = "删除成功";
-        public const string DeleteFail = "删除成功";
+        public const string DeleteFail = "删除失败";
         public const string NoChangeInOperation = "操作没有引发任何变化";
         public const string AllocationSucces = "分配成功";
         public const string LoadSucces = "加载成功";

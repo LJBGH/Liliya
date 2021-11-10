@@ -14,7 +14,7 @@ namespace Liliya.SqlSugar.Repository
     public class SqlSugarRepository<T> : ISqlSugarRepository<T> where T : class, new()
     {
         public SqlSugarClient _dbContext;
-        private IConfiguration _configuration;
+        //private IConfiguration _configuration;
         private IAkliaUser _akliaUser;
         private ILogger _logger = null;
 
@@ -70,7 +70,7 @@ namespace Liliya.SqlSugar.Repository
             {
                 //事务回滚
                 _dbContext.RollbackTran();
-                return new AjaxResult(e.Message, AjaxResultType.Error);
+                return new AjaxResult(e.Message, AjaxResultType.Fail);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Liliya.SqlSugar.Repository
             entity.NotNull(nameof(entity));
             entity = entity.CheckInsert<T>(_akliaUser);
             var issuccess = await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
-            return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
+            return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace Liliya.SqlSugar.Repository
         {
             entity.NotNull(nameof(entity));
             var issuccess = await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
-            return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
+            return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
 
 
@@ -137,7 +137,7 @@ namespace Liliya.SqlSugar.Repository
             entitys.NotNull(nameof(entitys));
             entitys = entitys.CheckInsertRange<T>(_akliaUser);
             var issuccess = await _dbContext.Insertable<T>(entitys).ExecuteCommandAsync() > 0;
-            return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
+            return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
 
         #endregion
@@ -154,7 +154,7 @@ namespace Liliya.SqlSugar.Repository
             entity.NotNull(nameof(entity));
             entity = entity.CheckUpdate<T>(_akliaUser);
             var issuccess = await _dbContext.Updateable<T>(entity).ExecuteCommandAsync() > 0;
-            return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
+            return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Liliya.SqlSugar.Repository
             entitys.NotNull(nameof(entitys));
             entitys = entitys.CheckUpdateRange<T>(_akliaUser);
             var issuccess = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync() > 0;
-            return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
+            return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
 
         #endregion
@@ -186,12 +186,12 @@ namespace Liliya.SqlSugar.Repository
             if (isSoft)
             {
                 var count = await _dbContext.Updateable<T>(entity).ExecuteCommandAsync();
-                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Error);
+                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
             }
             else
             {
                 var count = await _dbContext.Deleteable<T>(entity).ExecuteCommandAsync();
-                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Error);
+                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
             }
         }
 
@@ -207,12 +207,12 @@ namespace Liliya.SqlSugar.Repository
             if (isSoft)
             {
                 var count = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync();
-                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Error);
+                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
             }
             else
             {
                 var count = await _dbContext.Deleteable<T>(entitys).ExecuteCommandAsync();
-                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Error);
+                return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
             }
         }
 
@@ -231,18 +231,18 @@ namespace Liliya.SqlSugar.Repository
                 entitys = entitys.CheckDeleteRange<T>(out bool isSoft);
                 if (isSoft)
                 {
-                    var count = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync();
-                    return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Error);
+                    var count = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync();      
+                    return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
                 }
                 else
                 {
                     var count = await _dbContext.Deleteable<T>(entitys).ExecuteCommandAsync();
-                    return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Error);
+                    return new AjaxResult(count > 0 ? ResultMessage.DeleteSuccess : ResultMessage.DeleteFail, count > 0 ? AjaxResultType.Success : AjaxResultType.Fail);
                 }
             }
             catch (Exception e)
             {
-                return new AjaxResult(ResultMessage.DeleteFail, e.Message, AjaxResultType.Error);
+                return new AjaxResult(ResultMessage.DeleteFail, e.Message, AjaxResultType.Fail);
             }
         }
         #endregion

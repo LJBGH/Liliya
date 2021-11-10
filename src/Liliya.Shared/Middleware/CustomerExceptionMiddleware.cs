@@ -33,7 +33,7 @@ namespace Liliya.Shared
             {
                 context.Response.ContentType = "application/problem+json";
 
-                var title = "出现异常错误:" + ex.Message + ex.ToString();
+                var title = "出现异常错误:" + ex.Message/* + ex.ToString()*/;
 
                 _logger.LogError(title);
 

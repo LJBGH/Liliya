@@ -16,8 +16,8 @@ namespace Liliya.Shared
         /// <summary>
         /// 错误
         /// </summary>
-        [Description("错误")]
-        Error = 500,
+        [Description("失败")]
+        Fail = 201,
 
         /// <summary>
         /// 未经授权
@@ -42,18 +42,6 @@ namespace Liliya.Shared
         ///  系统出现异常
         /// </summary>
         [Description("系统出现异常")]
-        Exp = 10,
-
-        /// <summary>
-        /// 数据源不存在
-        /// </summary>
-        [Description("数据源不存在")]
-        QueryNull = 15,
-
-        /// <summary>
-        /// 操作没有引发任何变化
-        /// </summary>
-        [Description("操作没有引发任何变化")]
-        NoChanged = 20,
+        Error = 500
     }
 }

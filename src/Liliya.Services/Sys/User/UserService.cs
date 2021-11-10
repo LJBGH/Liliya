@@ -66,7 +66,7 @@ namespace Liliya.Services.Sys.User
         {
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null)
-                return new AjaxResult("该用户不存在", AjaxResultType.Error);
+                return new AjaxResult("该用户不存在", AjaxResultType.Fail);
             var data = user.MapTo<UserOutDto>();
             return new AjaxResult(ResultMessage.LoadSucces, data, AjaxResultType.Success);
         }
