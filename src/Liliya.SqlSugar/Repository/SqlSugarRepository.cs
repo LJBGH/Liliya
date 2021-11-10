@@ -83,6 +83,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns>操作是否成功</returns>
         public async Task<bool> AddAsync(T entity)
         {
+            entity.NotNull(nameof(entity));
             entity = entity.CheckInsert<T>(_akliaUser);
             return await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
         }
@@ -94,6 +95,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns>操作是否成功</returns>
         public async Task<bool> AddRangeAsync(List<T> entitys)
         {
+            entitys.NotNull(nameof(entitys));
             entitys = entitys.CheckInsertRange<T>(_akliaUser);
             return await _dbContext.Insertable<T>(entitys).ExecuteCommandAsync() > 0;
         }
@@ -105,6 +107,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> InsertAsync(T entity)
         {
+            entity.NotNull(nameof(entity));
             entity = entity.CheckInsert<T>(_akliaUser);
             var issuccess = await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
@@ -117,6 +120,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> InsertNoCheckAsync(T entity) 
         {
+            entity.NotNull(nameof(entity));
             var issuccess = await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
         }
@@ -130,6 +134,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> InsertRangeAsync(List<T> entitys)
         {
+            entitys.NotNull(nameof(entitys));
             entitys = entitys.CheckInsertRange<T>(_akliaUser);
             var issuccess = await _dbContext.Insertable<T>(entitys).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
@@ -146,6 +151,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> UpdateAsync(T entity)
         {
+            entity.NotNull(nameof(entity));
             entity = entity.CheckUpdate<T>(_akliaUser);
             var issuccess = await _dbContext.Updateable<T>(entity).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
@@ -158,6 +164,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> UpdateRangeAsync(List<T> entitys)
         {
+            entitys.NotNull(nameof(entitys));
             entitys = entitys.CheckUpdateRange<T>(_akliaUser);
             var issuccess = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Error);
@@ -173,6 +180,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> DeleteAsync(T entity)
         {
+            entity.NotNull(nameof(entity));
             var entity1 = entity.CheckDelete<T>(out bool isSoft);
 
             if (isSoft)
@@ -194,6 +202,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> DeleteRangeAsync(List<T> entitys)
         {
+            entitys.NotNull(nameof(entitys));
             entitys = entitys.CheckDeleteRange<T>(out bool isSoft);
             if (isSoft)
             {
@@ -214,6 +223,8 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<AjaxResult> DeleteByLambdaAsync(Expression<Func<T, bool>> expression)
         {
+            expression.NotNull(nameof(expression));
+            expression.NotNull(nameof(expression));
             try
             {
                 var entitys = await _dbContext.Queryable<T>().Where(expression).ToListAsync();
@@ -243,7 +254,6 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<List<T>> GetAsync()
         {
-
             return await _dbContext.Queryable<T>().ToListAsync();
         }
 
@@ -256,6 +266,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression)
         {
+            expression.NotNull(nameof(expression));
             return await _dbContext.Queryable<T>().Where(expression).SingleAsync();
         }
 
@@ -266,6 +277,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
         {
+            expression.NotNull(nameof(expression));
             return await _dbContext.Queryable<T>().Where(expression).ToListAsync();
         }
 
@@ -278,6 +290,7 @@ namespace Liliya.SqlSugar.Repository
         /// <returns></returns>
         public async Task<T> GetByIdAsync<Tkey>(Tkey id)
         {
+            id.NotNull(nameof(id));
             return await _dbContext.Queryable<T>().InSingleAsync(id);
         }
 

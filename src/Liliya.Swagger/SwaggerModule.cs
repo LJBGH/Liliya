@@ -25,12 +25,12 @@ namespace Liliya.Swagger
                 { 
                     Title = _title + " 接口文档", 
                     Version = _version, 
-                    Description = "基于Quertz的任务调度平台",
+                    Description = "基于.Net5.0和Sqlsugar的WebAPI框架模板",
                     Contact = new OpenApiContact 
                     {
                         Name = _title,
                         Email = "1983810978@qq.com",
-                        Url = new System.Uri("https://github.com/YANGKANG01/QuartzNetJob")
+                        Url = new System.Uri("https://github.com/LJBGH/Liliya")
                     }
                 });
 

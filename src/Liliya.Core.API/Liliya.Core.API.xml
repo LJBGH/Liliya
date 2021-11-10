@@ -15,6 +15,45 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Liliya.Core.API.Controllers.Sys.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.InsertAsync(Liliya.Dto.Sys.User.UserInputDto)">
+            <summary>
+            添加一个用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.UpdateAsync(Liliya.Dto.Sys.User.UserInputDto)">
+            <summary>
+            修改一个用户
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.DeleteAsync(System.Guid)">
+            <summary>
+            根据Id删除用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.GetByIdAsync(System.Guid)">
+            <summary>
+            根据Id加载用户
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.GetAllAsync">
+            <summary>
+            获取所有用户
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Liliya.Core.API.Startups.CommonExtendModule.AddCommonService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             公共拓展模块注入

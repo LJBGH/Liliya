@@ -25,7 +25,7 @@ namespace Liliya.SqlSugar.Repository
 
         #region Add
         /// <summary>
-        /// 增加单条数据
+        /// 增加单条数据返回Bool
         /// </summary>
         /// <param name="entity">实体对象</param>
         /// <returns>操作是否成功</returns>
@@ -89,7 +89,7 @@ namespace Liliya.SqlSugar.Repository
         Task<AjaxResult> DeleteAsync(T entity);
 
         /// <summary>
-        /// 批量删除
+        /// 批量根据实体删除
         /// </summary>
         /// <param name="entitys"></param>
         /// <returns></returns>
@@ -106,27 +106,27 @@ namespace Liliya.SqlSugar.Repository
         #region   Query查询
 
         /// <summary>
-        /// 获取所有数据
+        /// 获取所有数据返回List<T>
         /// </summary>
         /// <returns></returns>
         Task<List<T>> GetAsync();
 
         /// <summary>
-        /// 拉姆达表达式查询
+        /// 拉姆达表达式查询返回T
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
         Task<T> GetSingleAsync(Expression<Func<T, bool>> expression);
 
         /// <summary>
-        /// 拉姆达表达式查询一条
+        /// 拉姆达表达式查询一条,并返回T
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression);
 
         /// <summary>
-        /// 根据主键Id查询
+        /// 根据主键Id查询,返回T
         /// </summary>
         /// <typeparam name="Tkey"></typeparam>
         /// <param name="id"></param>
@@ -134,7 +134,7 @@ namespace Liliya.SqlSugar.Repository
         Task<T> GetByIdAsync<Tkey>(Tkey id);
 
         /// <summary>
-        /// 获取所有数据返回IQueryable类型
+        /// 获取所有数据返回IQueryable<T>类型
         /// </summary>
         /// <returns></returns>
         ISugarQueryable<T> GetIQueryableAsync();
