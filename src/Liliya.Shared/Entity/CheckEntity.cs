@@ -180,14 +180,15 @@ namespace Liliya.Shared
             //判断T是否继承ISpftDelete接口
             if (typeof(ISoftDelete).IsAssignableFrom(typeof(T)))
             {
+                //定义表达式变量
                 ParameterExpression param = Expression.Parameter(typeof(T), "m");
                 Expression key = param;
 
-                //定义表达式值
+                //定义条件值
                 object convertValue = false;
                 Expression value = Expression.Constant(convertValue);
 
-                //IsDeleted为逻辑删除字段名
+                //定义条件字段名
                 key = Expression.Property(key, "IsDeleted");
 
                 //生成表达式，并转为linq Where参数类型
