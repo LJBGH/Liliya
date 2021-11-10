@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using AkliaJob.Swagger;
 using Microsoft.AspNetCore.Builder;
 using AkliaJob.AutoMapper;
-
+using AkliaJob.SqlSugar.Repository;
 
 namespace AkliaJob.Center.Web.StartupModule
 {
@@ -18,11 +18,15 @@ namespace AkliaJob.Center.Web.StartupModule
             //swagger注入
             service.AddSwaggerService();
 
-            service.AddHttpContextAccessor();
-            service.AddSingleton<IAkliaUser, AkliaUser>();
-
             //AutoMapper注入
             service.AddAutoMapperService();
+
+            //SqlSugar泛型仓储注入
+            service.AddScoped(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
+
+            //Http上下文和用户信息注入
+            service.AddHttpContextAccessor();
+            service.AddSingleton<IAkliaUser, AkliaUser>();
         }
 
 
@@ -32,7 +36,7 @@ namespace AkliaJob.Center.Web.StartupModule
         //公共中间件
         public static IApplicationBuilder UseCommonExtension(this IApplicationBuilder app) 
         {
-            //Consul配置
+            //Consul服务注册发现配置
             //app.UseConsul();
 
             //Swagger配置

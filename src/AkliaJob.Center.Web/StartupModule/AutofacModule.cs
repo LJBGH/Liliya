@@ -29,12 +29,12 @@ namespace AkliaJob.Center.Web.StartupModule
             //var reposiyoryAssembly = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(x => x.FullName.Contains("AkliaJob.Services")).FirstOrDefault();
 
             var assemblysService = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AkliaJob.Services")).FirstOrDefault();
-            var assemblysRepository = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AkliaJob.Repository")).FirstOrDefault();
+            //var assemblysRepository = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("AkliaJob.Repository")).FirstOrDefault();
 
 
-            if (assemblysService == null || assemblysRepository == null) 
+            if (assemblysService == null) 
             {
-                throw new Exception("服务层或仓储层程序集未找到，或程序集已丢失，请重新编译运行");
+                throw new Exception("服务层程序集未找到，或程序集已丢失，请重新编译运行");
             }
 
             //业务层注入
@@ -44,10 +44,10 @@ namespace AkliaJob.Center.Web.StartupModule
                 //设置 生命周期 为Scope模式
                 .InstancePerLifetimeScope();
 
-            //仓储层注入
-            builder.RegisterAssemblyTypes(assemblysRepository)
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
+            ////仓储层注入
+            //builder.RegisterAssemblyTypes(assemblysRepository)
+            //    .AsImplementedInterfaces()
+            //    .InstancePerLifetimeScope();
         }
     }
 }
