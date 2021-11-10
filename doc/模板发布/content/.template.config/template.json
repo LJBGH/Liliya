@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "lijianbiao",
+    "classifications": [ "Web/WebAPI" ],
+    "name": "Liliya.Core",
+    "identity": "Liliya.Core.API", 
+    "shortName": "LiliyaCoreAPI", 
+    "tags": {
+      "language": "C#", 
+      "type": "project" 
+    },
+    "sourceName": "Liliya", 
+    "preferNameDirectory": true
+  }
