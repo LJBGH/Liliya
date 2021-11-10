@@ -170,14 +170,34 @@ namespace Liliya.Shared
         }
 
 
-        //public static Expression<Func<T, bool>> CheckQueryRange<T>()
-        //{
-        //    List<T> result = new List<T>();
-        //    //判断T是否继承ISpftDelete接口
-        //    if (typeof(ISoftDelete).IsAssignableFrom(typeof(T)))
-        //    {
-        //        Expression<Func<T, bool>> exp = new Expression<Func<T, bool>>();
-        //    }
-        //}
+        /// <summary>
+        /// 查询时,逻辑删除检查
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> CheckLogicDelete<T>(this T TEntity)                
+        {
+            //判断T是否继承ISpftDelete接口
+            if (typeof(ISoftDelete).IsAssignableFrom(typeof(T)))
+            {
+                ParameterExpression param = Expression.Parameter(typeof(T), "m");
+                Expression key = param;
+
+                //定义表达式值
+                object convertValue = false;
+                Expression value = Expression.Constant(convertValue);
+
+                //IsDeleted为逻辑删除字段名
+                key = Expression.Property(key, "IsDeleted");
+
+                //生成表达式，并转为linq Where参数类型
+                var expression =  Expression.Equal(key, Expression.Convert(value, key.Type)) as Expression;
+                return Expression.Lambda<Func<T, bool>>(expression, param);
+            }
+            else 
+            {
+                return null;
+            }
+        }
     }
 }

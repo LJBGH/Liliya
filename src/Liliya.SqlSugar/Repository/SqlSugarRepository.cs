@@ -208,6 +208,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<AjaxResult> DeleteAsync(T entity)
         {
             entity.NotNull(nameof(entity));
+
             var entity1 = entity.CheckDelete<T>(out bool isSoft);
 
             if (isSoft)
@@ -319,7 +320,10 @@ namespace Liliya.SqlSugar.Repository
         public async Task<T> GetByIdAsync<Tkey>(Tkey id)
         {
             id.NotNull(nameof(id));
-            return await _dbContext.Queryable<T>().InSingleAsync(id);
+
+            var entity = new T();
+            var isDeleted = entity.CheckLogicDelete();
+            return await _dbContext.Queryable<T>().Where(isDeleted).InSingleAsync(id);
         }
 
         /// <summary>
