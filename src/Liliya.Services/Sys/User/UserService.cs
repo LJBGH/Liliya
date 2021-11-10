@@ -1,10 +1,8 @@
 ﻿using Liliya.Dto.Sys.User;
-using Liliya.Models.Entitys;
+using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Liliya.Services.Sys.User

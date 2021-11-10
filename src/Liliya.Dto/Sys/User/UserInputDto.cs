@@ -1,9 +1,7 @@
-﻿using Liliya.Models.Entitys;
+﻿using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 
 namespace Liliya.Dto.Sys.User
 {

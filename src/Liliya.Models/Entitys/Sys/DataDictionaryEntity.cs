@@ -7,61 +7,61 @@ using System.Text;
 
 namespace Liliya.Models.Entitys.Sys
 {
-
     /// <summary>
     /// 用户表
     /// </summary>
-    [SugarTable("sys_User",TableDescription = "用户表")]
-    public class UserEntity : IFullAuditedEntity
+    [SugarTable("sys_DataDictionary", TableDescription = "数据字典表")]
+    public class DataDictionaryEntity : IFullAuditedEntity
     {
         /// <summary>
         /// 主键Id
         /// </summary>
-        [SugarColumn(IsPrimaryKey = true/*, IsIdentity = true*/,ColumnDescription = "主键Id")]
         [DisplayName("主键Id")]
+        [SugarColumn(IsPrimaryKey = true, ColumnDescription = "主键Id")]
         public Guid Id { get; set; }
 
-        /// <summary>
-        /// 账号
-        /// </summary>
-        [DisplayName("账号")]
-        [SugarColumn(IsNullable = true,Length = 50, ColumnDescription = "账号")]
-        public string Account { get; set; }
 
         /// <summary>
-        /// 密码
+        /// 数据字典标题
         /// </summary>
-        [DisplayName("密码")]
-        [SugarColumn(IsNullable = true, Length = 50, ColumnDescription = "密码")]
-        public string Password { get; set; }
+        [DisplayName("数据字典标题")]
+        [SugarColumn(IsNullable = true,Length =50, ColumnDescription = "数据字典标题")]
+        public string Title { get; set; }
 
         /// <summary>
-        /// 人员姓名
+        /// 数据字典值
         /// </summary>
-        [DisplayName("人员姓名")]
-        [SugarColumn(IsNullable = true,Length = 50, ColumnDescription = "人员姓名")]
-        public string Name { get; set; }
+        [DisplayName("数据字典值")]
+        [SugarColumn(IsNullable = true,Length = 255, ColumnDescription = "数据字典值")]
+        public string Value { get; set; }
 
         /// <summary>
-        /// 工号
+        /// 数据字典备注
         /// </summary>
-        [DisplayName("工号")]
-        [SugarColumn(IsNullable = true,Length = 50, ColumnDescription = "工号")]
-        public string JobNumber { get; set; }
+        [DisplayName("数据字典备注")]
+        [SugarColumn(IsNullable = true, ColumnDataType = "longtext", ColumnDescription = "数据字典备注")]
+        public string Remark { get; set; }
 
         /// <summary>
-        /// 部门
+        /// 数据字典父级
         /// </summary>
-        [DisplayName("部门")]
-        [SugarColumn(IsNullable = true,Length = 50, ColumnDescription = "部门")]
-        public string Department { get; set; }
+        [DisplayName("数据字典父级")]
+        [SugarColumn( ColumnDescription = "数据字典父级")]
+        public Guid ParentId { get; set; } = Guid.Empty;
 
         /// <summary>
-        /// 职位
+        /// 排序
         /// </summary>
-        [DisplayName("职位")]
-        [SugarColumn(IsNullable = true,Length = 50, ColumnDescription = "职位")]
-        public string Position { get; set; }
+        [DisplayName("排序")]
+        [SugarColumn(IsNullable = true, ColumnDescription = "排序")]
+        public int Sort { get; set; }
+
+        /// <summary>
+        ///获取或设置 编码
+        /// </summary>
+        [DisplayName("唯一编码")]
+        [SugarColumn(IsNullable = true,Length =255, ColumnDescription = "唯一编码")]
+        public string Code { get; set; }
 
 
 

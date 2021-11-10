@@ -1,4 +1,4 @@
-using Liliya.Models.Entitys;
+using Liliya.Models.Entitys.Sys;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SqlSugar;
 
@@ -24,7 +24,8 @@ namespace Liliya.Test
                 InitKeyType = InitKeyType.Attribute,//从特性读取主键自增信息
             });
 
-            db.CodeFirst.InitTables(typeof(UserEntity));
+            //db.CodeFirst.InitTables(typeof(UserEntity));
+            db.CodeFirst.InitTables(typeof(DataDictionaryEntity));
 
         }
     }

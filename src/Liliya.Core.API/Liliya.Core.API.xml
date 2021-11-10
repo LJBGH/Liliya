@@ -15,6 +15,37 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Liliya.Core.API.Controllers.Sys.DataDictionaryController">
+            <summary>
+            数据字典管理
+            </summary>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.DataDictionaryController.InsertAsync(Liliya.Dto.Sys.DataDictionary.DataDictionaryInputDto)">
+            <summary>
+            添加数据字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.DataDictionaryController.UpdateAsync(Liliya.Dto.Sys.DataDictionary.DataDictionaryInputDto)">
+            <summary>
+            修改数据字典
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.DataDictionaryController.DeleteAsync(System.Guid)">
+            <summary>
+            删除数据字典
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.DataDictionaryController.GetTreeAsync">
+            <summary>
+            获取数据字典树形
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Liliya.Core.API.Controllers.Sys.UserController">
             <summary>
             用户管理
