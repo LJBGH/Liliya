@@ -54,6 +54,12 @@ namespace Liliya.Dto.Sys.DataDictionary
         public string Code { get; set; }
 
         /// <summary>
+        /// 是否有子节点
+        /// </summary>
+        [DisplayName("是否有子节点")]
+        public bool IsLeaf { get; set; } = false;
+
+        /// <summary>
         /// 子集
         /// </summary>
         public List<DataDictionaryTreeDto> Children { get; set; } = new List<DataDictionaryTreeDto>();

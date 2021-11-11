@@ -81,7 +81,9 @@ namespace Liliya.Services.Sys.DataDictionary
             {
                 var childrens = dictList.Where(x => x.ParentId == item.Id).ToList();
                 if (childrens == null || childrens.Count == 0)
-                    return;
+                    continue;
+                if (childrens.Count > 0)
+                    item.IsLeaf = true;
                 item.Children.AddRange(childrens);
                 item.Children.OrderBy(x => x.Sort);
                 DictionaryToTree(childrens, dictList);
