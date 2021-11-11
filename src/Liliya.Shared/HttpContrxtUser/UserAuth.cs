@@ -29,7 +29,7 @@ namespace Liliya.Shared
         /// <summary>
         /// 用户ID
         /// </summary>
-        public Guid Id => GetClaimValueByType("userId").FirstOrDefault().ToGuid();
+        public Guid Id => GetClaimValueByType("jti").FirstOrDefault().ToGuid();
 
         /// <summary>
         /// 得到Claims
