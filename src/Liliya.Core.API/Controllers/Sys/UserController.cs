@@ -4,6 +4,7 @@ using Liliya.Shared;
 using Liliya.Shared.Controller;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,16 @@ namespace Liliya.Core.API.Controllers.Sys
     /// <summary>
     /// 用户管理
     /// </summary>
-    [Authorize]
+    //[Authorize]
     public class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IOptions<AuthrizeToken> _authrizeToken;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IOptions<AuthrizeToken> authrizeToken)
         {
             _userService = userService;
+            _authrizeToken = authrizeToken;
         }
 
         /// <summary>
@@ -76,6 +79,7 @@ namespace Liliya.Core.API.Controllers.Sys
         [HttpGet]
         public async Task<AjaxResult> GetAllAsync() 
         {
+            Console.WriteLine(_authrizeToken.Value.Audience);
             return await _userService.GetAllAsync();
         }
     }

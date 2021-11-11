@@ -4,6 +4,7 @@ using Liliya.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Liliya.AutoMapper;
 using Liliya.SqlSugar.Repository;
+using Microsoft.Extensions.Configuration;
 
 namespace Liliya.Core.API.Startups
 {
@@ -13,12 +14,12 @@ namespace Liliya.Core.API.Startups
         /// <summary>
         /// 公共拓展模块注入
         /// </summary>
-        public static void AddCommonService(this IServiceCollection service) 
+        public static void AddCommonService(this IServiceCollection service, IConfiguration configuration) 
         {
             //swagger注入
             service.AddSwaggerService();
             //授权认证注入
-            service.AddAuthService();
+            service.AddAuthService(configuration);
             //AutoMapper注入
             service.AddAutoMapperService();
             //SqlSugar泛型仓储注入

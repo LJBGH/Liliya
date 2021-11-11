@@ -2,6 +2,7 @@
 using Liliya.Shared.AppSetting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -13,16 +14,27 @@ namespace Liliya.Core.API.Startups
 {
     public static class AuthorizationModule
     {
-        public static void AddAuthService(this IServiceCollection service)
+        public static void AddAuthService(this IServiceCollection service, IConfiguration configuration)
         {
-            var secretKey = Appsettings.app(new string[] { "Liliya", "Jwt", "SecretKey" });
-            var issuer = Appsettings.app(new string[] { "Liliya", "Jwt", "Issuer" });
-            var audience = Appsettings.app(new string[] { "Liliya", "Jwt", "Audience" });
-            var expireMins = int.Parse(Appsettings.app(new string[] { "Liliya", "Jwt", "ExpireMins" }));
+            //var secretKey = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "SecretKey" });
+            //var issuer = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Issuer" });
+            //var audience = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Audience" });
+            //var expireMins = int.Parse(Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "ExpireMins" }));
+
+            AuthrizeToken authrizeToken = new AuthrizeToken
+            {
+                SecretKey = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "SecretKey" }),
+                Issuer = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Issuer" }),
+                Audience = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Audience" }),
+                ExpireMins = int.Parse(Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "ExpireMins" }))
+            };
+            //注入配置类
+            service.Configure<AuthrizeToken>(configuration.GetSection("Liliya:AuthrizeToken"));
 
             //Http上下文和用户信息注入
             service.AddHttpContextAccessor();
             service.AddSingleton<IUserAuth, UserAuth>();
+
             service.AddAuthorization();
             service.AddAuthentication(options =>
             {
@@ -47,12 +59,12 @@ namespace Liliya.Core.API.Startups
                     RequireExpirationTime = true,
 
                     //Token颁发机构
-                    ValidIssuer = issuer,
+                    ValidIssuer = authrizeToken.Issuer,
                     //颁发给谁
-                    ValidAudience = audience,
+                    ValidAudience = authrizeToken.Audience,
 
                     //这里的key要进行加密
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authrizeToken.SecretKey)),
 
                     //允许服务器时间偏移量300秒，即我们配置的过期时间加上这个允许偏移的时间值，
                     //才是真正过期的时间(过期时间 + 偏移值)你也可以设置为0，ClockSkew = TimeSpan.Zero

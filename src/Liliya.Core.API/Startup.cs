@@ -24,7 +24,7 @@ namespace Liliya.Core.API
             services.AddControllers();
 
             //公共拓展模块注入
-            services.AddCommonService();
+            services.AddCommonService(Configuration);
         }
 
         //Autofac模块注入
