@@ -19,12 +19,10 @@ namespace Liliya.Core.API.Controllers.Sys
     public class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IOptions<AuthrizeToken> _authrizeToken;
 
-        public UserController(IUserService userService, IOptions<AuthrizeToken> authrizeToken)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _authrizeToken = authrizeToken;
         }
 
         /// <summary>
@@ -79,7 +77,6 @@ namespace Liliya.Core.API.Controllers.Sys
         [HttpGet]
         public async Task<AjaxResult> GetAllAsync() 
         {
-            Console.WriteLine(_authrizeToken.Value.Audience);
             return await _userService.GetAllAsync();
         }
     }

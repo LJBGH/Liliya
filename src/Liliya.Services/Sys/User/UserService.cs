@@ -78,7 +78,7 @@ namespace Liliya.Services.Sys.User
 
         public async Task<AjaxResult> GetAllAsync()
         {
-            var list = await _userRepository.GetAsync();
+            var list = await _userRepository.GetAllAsync();
             var result = list.MapToList<UserOutDto>();
             return new AjaxResult(ResultMessage.LoadSucces, result, AjaxResultType.Success);
         }

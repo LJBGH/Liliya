@@ -118,21 +118,21 @@ namespace Liliya.SqlSugar.Repository
         /// 获取所有数据返回List<T>
         /// </summary>
         /// <returns></returns>
-        Task<List<T>> GetAsync();
+        Task<List<T>> GetAllAsync();
 
         /// <summary>
         /// 拉姆达表达式查询返回T
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<T> GetSingleAsync(Expression<Func<T, bool>> expression);
+        Task<T> GetSingleByLambdaAsync(Expression<Func<T, bool>> expression);
 
         /// <summary>
         /// 拉姆达表达式查询一条,并返回T
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression);
+        Task<List<T>> GetByLambdaAsync(Expression<Func<T, bool>> expression);
 
         /// <summary>
         /// 根据主键Id查询,返回T

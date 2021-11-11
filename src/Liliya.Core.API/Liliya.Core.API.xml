@@ -46,6 +46,29 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Liliya.Core.API.Controllers.Sys.LoginController">
+            <summary>
+            登录模块
+            </summary>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.LoginController.LoginAsync(Liliya.Dto.Sys.Login.LoginInputDto)">
+            <summary>
+            登录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.LoginController.SignOutAsync">
+            <summary>
+            登出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.LoginController.UpdatePasswordAsync(Liliya.Dto.Sys.Login.PasswordDto)">
+            <summary>
+            修改密码
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Liliya.Core.API.Controllers.Sys.UserController">
             <summary>
             用户管理

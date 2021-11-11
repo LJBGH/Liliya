@@ -57,7 +57,6 @@ namespace Liliya.Core.API.Startups
                     ValidateLifetime = true,
                     //过期时间 是否要求Token的Claims中必须包含Expires
                     RequireExpirationTime = true,
-
                     //Token颁发机构
                     ValidIssuer = authrizeToken.Issuer,
                     //颁发给谁

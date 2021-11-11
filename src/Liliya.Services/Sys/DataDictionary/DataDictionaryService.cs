@@ -60,7 +60,7 @@ namespace Liliya.Services.Sys.DataDictionary
         /// <returns></returns>
         public async Task<AjaxResult> GetTreeAsync()
         {
-            var list = await _dataDictionaryRepository.GetAllAsync(x => x.IsDeleted == false);
+            var list = await _dataDictionaryRepository.GetByLambdaAsync(x => x.IsDeleted == false);
             var dictList = list.MapToList<DataDictionaryTreeDto>().ToList();
             var rootList = dictList.Where(x => x.ParentId.IsNullOrEmpty()).ToList();
             DictionaryToTree(rootList, dictList);

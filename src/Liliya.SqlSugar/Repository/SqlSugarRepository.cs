@@ -273,7 +273,7 @@ namespace Liliya.SqlSugar.Repository
         /// 查询所有数据
         /// </summary>
         /// <returns></returns>
-        public async Task<List<T>> GetAsync()
+        public async Task<List<T>> GetAllAsync()
         {
             return await _dbContext.Queryable<T>().ToListAsync();
         }
@@ -283,7 +283,7 @@ namespace Liliya.SqlSugar.Repository
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression)
+        public async Task<T> GetSingleByLambdaAsync(Expression<Func<T, bool>> expression)
         {
             expression.NotNull(nameof(expression));
             return await _dbContext.Queryable<T>().Where(expression).SingleAsync();
@@ -294,7 +294,7 @@ namespace Liliya.SqlSugar.Repository
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetByLambdaAsync(Expression<Func<T, bool>> expression)
         {
             expression.NotNull(nameof(expression));
             return await _dbContext.Queryable<T>().Where(expression).ToListAsync();
