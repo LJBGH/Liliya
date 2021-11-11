@@ -17,7 +17,7 @@ namespace Liliya.Shared
         /// <param name="entity"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static T CheckInsert<T>(this T entity, IAkliaUser akliaUser) where T : class
+        public static T CheckInsert<T>(this T entity, IUserAuth akliaUser) where T : class
         {
             //判断T是否继承ICreatedAudited接口
             if (typeof(ICreatedAudited).IsAssignableFrom(typeof(T)))
@@ -41,7 +41,7 @@ namespace Liliya.Shared
         /// <param name="entitys"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static List<T> CheckInsertRange<T>(this List<T> entitys, IAkliaUser akliaUser) where T : class
+        public static List<T> CheckInsertRange<T>(this List<T> entitys, IUserAuth akliaUser) where T : class
         {
             //判断T是否继承ICreatedAudited接口
             if (typeof(ICreatedAudited).IsAssignableFrom(typeof(T)) && entitys.IsNotNull())
@@ -71,7 +71,7 @@ namespace Liliya.Shared
         /// <param name="entity"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static T CheckUpdate<T>(this T entity, IAkliaUser akliaUser)
+        public static T CheckUpdate<T>(this T entity, IUserAuth akliaUser)
         {
             //判断T是否继承IModifiedAudited接口
             if (typeof(IModifiedAudited).IsAssignableFrom(typeof(T)))
@@ -95,7 +95,7 @@ namespace Liliya.Shared
         /// <param name="entitys"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static List<T> CheckUpdateRange<T>(this List<T> entitys, IAkliaUser akliaUser)
+        public static List<T> CheckUpdateRange<T>(this List<T> entitys, IUserAuth akliaUser)
         {
             //判断T是否继承IModifiedAudited接口
             if (typeof(IModifiedAudited).IsAssignableFrom(typeof(T)) && entitys.IsNotNull())
