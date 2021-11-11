@@ -2,6 +2,7 @@
 using Liliya.Services.Sys.User;
 using Liliya.Shared;
 using Liliya.Shared.Controller;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// <summary>
     /// 用户管理
     /// </summary>
+    [Authorize]
     public class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;
