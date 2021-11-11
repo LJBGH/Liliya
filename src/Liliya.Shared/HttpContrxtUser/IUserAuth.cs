@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Liliya.Shared
 {
-    public interface IAkliaUser
+    public interface IUserAuth
     {
         /// <summary>
         /// 用户名
@@ -13,7 +13,7 @@ namespace Liliya.Shared
         string Name { get; }
 
         /// <summary>
-        /// ID属性
+        /// 用户ID
         /// </summary>
         Guid Id { get; }
 

@@ -9,29 +9,25 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// SqlSugar仓储层拓展
+/// </summary>
 namespace Liliya.SqlSugar.Repository
 {
     public class SqlSugarRepository<T> : ISqlSugarRepository<T> where T : class, new()
     {
-        public SqlSugarClient _dbContext;
-        //private IConfiguration _configuration;
-        private IAkliaUser _akliaUser;
         private ILogger _logger = null;
+        public SqlSugarClient _dbContext;
+        private IAkliaUser _akliaUser;
 
         public SqlSugarRepository(IServiceProvider serviceProvider)
         {
-            //_configuration = configuration;
-            //var conn = configuration["Liliya:MySql:DbContexts:ConnectionString"];
-            //var dbtype = configuration["Liliya:MySql:DbContexts:DataBaseType"];
             var conn = Appsettings.app(new string[] { "Liliya", "DbContexts", "ConnectionString" });
             var dbtype = Appsettings.app(new string[] { "Liliya", "DbContexts", "DataBaseType" });
             this._logger = serviceProvider.GetLogger(GetType());
             this._dbContext = SqlSugarDbFactory.GetSqlSugarDb(conn, dbtype, _logger);
-            _akliaUser = (serviceProvider.GetService(typeof(IAkliaUser)) as IAkliaUser);
+            this._akliaUser = (serviceProvider.GetService(typeof(IAkliaUser)) as IAkliaUser);
         }
-
-
-
 
         /// <summary>
         /// 当前用户Id
@@ -125,8 +121,6 @@ namespace Liliya.SqlSugar.Repository
             return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
 
-
-
         /// <summary>
         /// 批量插入
         /// </summary>
@@ -169,7 +163,6 @@ namespace Liliya.SqlSugar.Repository
             var issuccess = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
-
         #endregion
 
 
@@ -286,8 +279,6 @@ namespace Liliya.SqlSugar.Repository
             return await _dbContext.Queryable<T>().ToListAsync();
         }
 
-
-
         /// <summary>
         /// 拉姆达表达式查询一条
         /// </summary>
@@ -375,6 +366,112 @@ namespace Liliya.SqlSugar.Repository
 
 
 
+
+        #region  实体检查拓展
+        /// <summary>
+        /// 插入拓展
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        private T InsertExpend(T entity)
+        {
+            System.Reflection.PropertyInfo[] properties = entity.GetType().GetProperties();
+            foreach (System.Reflection.PropertyInfo property in properties)
+            {
+                switch (property.Name)
+                {
+                    //case "Id":
+                    //    if (property.PropertyType == typeof(Guid))
+                    //        property.SetValue(entity, Guid.NewGuid());
+                    //    break;
+                    case "CreatedAt": property.SetValue(entity, DateTime.Now); break;
+                    case "CreatedId": property.SetValue(entity, _userId); break;
+                    case "LastModifedAt": property.SetValue(entity, DateTime.Now); break;
+                    case "LastModifyId": property.SetValue(entity, _userId); break;
+                }
+            }
+            return entity;
+        }
+
+        /// <summary>
+        /// 批量插入拓展
+        /// </summary>
+        /// <param name="entitys"></param>
+        /// <returns></returns>
+        private List<T> InsertRangeExpend(List<T> entitys)
+        {
+            for (int i = 0; i < entitys.Count; i++)
+            {
+                entitys[i] = InsertExpend(entitys[i]);
+            }
+            return entitys;
+        }
+
+        /// <summary>
+        /// 修改拓展
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        private T UpdateExpend(T entity)
+        {
+            System.Reflection.PropertyInfo[] properties = entity.GetType().GetProperties();
+            foreach (System.Reflection.PropertyInfo property in properties)
+            {
+                switch (property.Name)
+                {
+                    case "LastModifedAt": property.SetValue(entity, DateTime.Now); break;
+                    case "LastModifyId": property.SetValue(entity, _userId); break;
+                }
+            }
+            return entity;
+        }
+
+        /// <summary>
+        /// 批量修改拓展
+        /// </summary>
+        /// <param name="entitys"></param>
+        /// <returns></returns>
+        private List<T> UpdateRangeExpend(List<T> entitys)
+        {
+            for (int i = 0; i < entitys.Count; i++)
+            {
+                entitys[i] = UpdateExpend(entitys[i]);
+            }
+            return entitys;
+        }
+
+        /// <summary>
+        /// 删除拓展
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        private T DeleteExpend(T entity)
+        {
+            System.Reflection.PropertyInfo[] properties = entity.GetType().GetProperties();
+            foreach (System.Reflection.PropertyInfo property in properties)
+            {
+                switch (property.Name)
+                {
+                    case "IsDeleted": property.SetValue(entity, true); break;
+                }
+            }
+            return entity;
+        }
+
+        /// <summary>
+        /// 批量删除拓展
+        /// </summary>
+        /// <param name="entitys"></param>
+        /// <returns></returns>
+        private List<T> DeleteRangeExpend(List<T> entitys)
+        {
+            for (int i = 0; i < entitys.Count; i++)
+            {
+                entitys[i] = DeleteExpend(entitys[i]);
+            }
+            return entitys;
+        }
+        #endregion
 
     }
 }

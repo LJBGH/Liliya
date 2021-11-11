@@ -26,7 +26,7 @@ namespace Liliya.Core.API.Startups
 
             //Http上下文和用户信息注入
             service.AddHttpContextAccessor();
-            service.AddSingleton<IAkliaUser, AkliaUser>();
+            service.AddSingleton<IUserAuth, UserAuth>();
         }
 
 

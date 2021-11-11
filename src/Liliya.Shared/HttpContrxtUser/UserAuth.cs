@@ -9,26 +9,39 @@ using System.Text;
 
 namespace Liliya.Shared
 {
-    public class AkliaUser : IAkliaUser
+    public class UserAuth : IUserAuth
     {
         private readonly IHttpContextAccessor _accessor;
 
-        public AkliaUser(IHttpContextAccessor accessor)
+        public UserAuth(IHttpContextAccessor accessor)
         {
             _accessor = accessor;
 
             //accessor.HttpContext.Request.Cookies.TryGetValue("",  out string fdaaf);
         }
 
+        /// <summary>
+        /// 用户名
+        /// </summary>
         public string Name => _accessor.HttpContext.User.Identity.Name;
 
+        /// <summary>
+        /// 用户ID
+        /// </summary>
         public Guid Id => GetClaimValueByType("jti").FirstOrDefault().ToGuid();
 
+        /// <summary>
+        /// 得到HttpContextClaim
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Claim> GetClaimsIdentity()
         {
             return _accessor.HttpContext.User.Claims;
         }
 
+        /// <summary>
+        /// 解析Claim
+        /// </summary>
         public List<string> GetClaimValueByType(string ClaimType)
         {
             return (from item in GetClaimsIdentity()
@@ -36,11 +49,20 @@ namespace Liliya.Shared
                     select item.Value).ToList();
         }
 
+        /// <summary>
+        /// 获取Token
+        /// </summary>
+        /// <returns></returns>
         public string GetToken()
         {
             return _accessor.HttpContext.Request.Headers["Authorization"].ObjToString().Replace("Bearer ", "");
         }
 
+        /// <summary>
+        /// 解析Token
+        /// </summary>
+        /// <param name="ClaimType"></param>
+        /// <returns></returns>
         public List<string> GetUserInfoFromToken(string ClaimType)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
