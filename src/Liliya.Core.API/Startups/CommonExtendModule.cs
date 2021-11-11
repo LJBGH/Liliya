@@ -17,16 +17,12 @@ namespace Liliya.Core.API.Startups
         {
             //swagger注入
             service.AddSwaggerService();
-
+            //授权认证注入
+            service.AddAuthService();
             //AutoMapper注入
             service.AddAutoMapperService();
-
             //SqlSugar泛型仓储注入
             service.AddScoped(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
-
-            //Http上下文和用户信息注入
-            service.AddHttpContextAccessor();
-            service.AddSingleton<IUserAuth, UserAuth>();
         }
 
 

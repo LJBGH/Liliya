@@ -18,7 +18,7 @@ namespace Liliya.SqlSugar.Repository
     {
         private ILogger _logger = null;
         public SqlSugarClient _dbContext;
-        private IAkliaUser _akliaUser;
+        private IUserAuth _akliaUser;
 
         public SqlSugarRepository(IServiceProvider serviceProvider)
         {
@@ -26,14 +26,13 @@ namespace Liliya.SqlSugar.Repository
             var dbtype = Appsettings.app(new string[] { "Liliya", "DbContexts", "DataBaseType" });
             this._logger = serviceProvider.GetLogger(GetType());
             this._dbContext = SqlSugarDbFactory.GetSqlSugarDb(conn, dbtype, _logger);
-            this._akliaUser = (serviceProvider.GetService(typeof(IAkliaUser)) as IAkliaUser);
+            this._akliaUser = (serviceProvider.GetService(typeof(IUserAuth)) as IUserAuth);
         }
 
         /// <summary>
         /// 当前用户Id
         /// </summary>
         private Guid _userId => _akliaUser.Id;
-
 
         /// <summary>
         /// 获取DbContext

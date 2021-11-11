@@ -16,13 +16,11 @@ namespace Liliya.Core.API
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
 
             //公共拓展模块注入
@@ -42,7 +40,6 @@ namespace Liliya.Core.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
             //公共组件配置
             app.UseCommonExtension();
 
@@ -51,7 +48,9 @@ namespace Liliya.Core.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //授权认证中间件必须配置路由之后，不然会报错
+            app.UseAuthentication(); //认证
+            app.UseAuthorization(); //授权
 
             app.UseEndpoints(endpoints =>
             {
