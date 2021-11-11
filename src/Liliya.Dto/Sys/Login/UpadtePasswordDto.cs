@@ -4,13 +4,8 @@ using System.Text;
 
 namespace Liliya.Dto.Sys.Login
 {
-    public class PasswordDto
+    public class PasswordDto : LoginInputDto
     {
-        /// <summary>
-        /// 旧密码
-        /// </summary>
-        public string OldPassword { get; set; }
-
         /// <summary>
         /// 新密码
         /// </summary>

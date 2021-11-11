@@ -62,9 +62,16 @@ namespace Liliya.Services.Sys.Login
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public Task<AjaxResult> UpdatePasswordAsync(PasswordDto input)
+        public async Task<AjaxResult> UpdatePasswordAsync(PasswordDto input)
         {
-            throw new NotImplementedException();
+            input.NotNull(nameof(input));
+            var user = await _userRepository.GetSingleByLambdaAsync(x => x.Account == input.Account);
+            if (user == null)
+                return new AjaxResult("账号不存在", AjaxResultType.Fail);
+            if (user.Password != input.Password.ToMD5())
+                return new AjaxResult("密码错误", AjaxResultType.Fail);
+            user.Password = input.NewPassword.ToMD5();
+            return await _userRepository.UpdateAsync(user);
         }
     }
 }
