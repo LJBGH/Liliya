@@ -10,10 +10,8 @@ namespace Liliya.Core.API.Startups
 {
     public static class AutofacModule
     {
-
-        public static void ServicesAndRepositoryInject(this ContainerBuilder builder) 
+        public static void ServicesInject(this ContainerBuilder builder) 
         {
-
             //var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath; //获取项目路径
             //var repositoryDllFile = Path.Combine(basePath, "Liliya.Repository.dll");
             //var serviceDllFile = Path.Combine(basePath, "Liliya.Services.dll");
@@ -28,6 +26,7 @@ namespace Liliya.Core.API.Startups
             //var serviceAssembly = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(x => x.FullName.Contains("Liliya.Services")).FirstOrDefault();
             //var reposiyoryAssembly = Assembly.GetExecutingAssembly().GetReferencedAssemblies().Where(x => x.FullName.Contains("Liliya.Services")).FirstOrDefault();
 
+            //获取服务层程序集
             var assemblysService = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Liliya.Services")).FirstOrDefault();
             //var assemblysRepository = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.FullName.Contains("Liliya.Repository")).FirstOrDefault();
 

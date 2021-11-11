@@ -32,8 +32,8 @@ namespace Liliya.Core.API
         //Autofac模块注入
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            //服务层和仓储层注入
-            builder.ServicesAndRepositoryInject();
+            //服务层注入
+            builder.ServicesInject();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

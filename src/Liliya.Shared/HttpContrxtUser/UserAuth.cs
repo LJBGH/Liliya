@@ -41,7 +41,7 @@ namespace Liliya.Shared
         }
 
         /// <summary>
-        /// 解析根据Claim类型获取值
+        /// 根据Claim类型获取值
         /// </summary>
         public List<string> GetClaimValueByType(string ClaimType)
         {
