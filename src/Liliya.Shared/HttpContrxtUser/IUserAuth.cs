@@ -30,7 +30,7 @@ namespace Liliya.Shared
         IEnumerable<Claim> GetClaimsIdentity();
 
         /// <summary>
-        /// 解析Claim
+        /// 根据Claim类型获取值
         /// </summary>
         /// <param name="ClaimType"></param>
         /// <returns></returns>

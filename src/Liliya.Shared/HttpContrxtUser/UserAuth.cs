@@ -7,8 +7,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace Liliya.Shared
+namespace Liliya.Shared                                           
 {
+    /// <summary>
+    /// 用户信息
+    /// </summary>
     public class UserAuth : IUserAuth
     {
         private readonly IHttpContextAccessor _accessor;
@@ -16,8 +19,6 @@ namespace Liliya.Shared
         public UserAuth(IHttpContextAccessor accessor)
         {
             _accessor = accessor;
-
-            //accessor.HttpContext.Request.Cookies.TryGetValue("",  out string fdaaf);
         }
 
         /// <summary>
@@ -28,10 +29,10 @@ namespace Liliya.Shared
         /// <summary>
         /// 用户ID
         /// </summary>
-        public Guid Id => GetClaimValueByType("jti").FirstOrDefault().ToGuid();
+        public Guid Id => GetClaimValueByType("userId").FirstOrDefault().ToGuid();
 
         /// <summary>
-        /// 得到HttpContextClaim
+        /// 得到Claims
         /// </summary>
         /// <returns></returns>
         public IEnumerable<Claim> GetClaimsIdentity()
@@ -40,7 +41,7 @@ namespace Liliya.Shared
         }
 
         /// <summary>
-        /// 解析Claim
+        /// 解析根据Claim类型获取值
         /// </summary>
         public List<string> GetClaimValueByType(string ClaimType)
         {
