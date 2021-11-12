@@ -15,7 +15,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// <summary>
     /// 用户管理
     /// </summary>
-    //[Authorize]
+    [Authorize(Policy = CostomGlobalPolicy.Name)]
     public class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;

@@ -2,6 +2,7 @@
 using Liliya.Services.Sys.Login;
 using Liliya.Shared;
 using Liliya.Shared.Controller;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// <summary>
     /// 登录模块
     /// </summary>
+    [Authorize(Policy = CostomGlobalPolicy.Name)]
     public class LoginController : ApiControllerBase
     {
         private readonly ILoginService _loginService;
@@ -27,6 +29,7 @@ namespace Liliya.Core.API.Controllers.Sys
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<AjaxResult> LoginAsync(LoginInputDto input) 
         {
             return await _loginService.LoginAsync(input);

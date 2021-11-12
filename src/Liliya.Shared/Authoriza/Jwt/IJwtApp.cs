@@ -54,5 +54,20 @@ namespace Liliya.Shared
         /// <param name="token"></param>
         /// <returns></returns>
         Task<bool> DeactivateTokenAsync();
+
+
+        /// <summary>
+        /// 判断Token是否有效
+        /// </summary>
+        /// <param name="token">Token</param>
+        /// <returns></returns>
+        Task<bool> IsActiveAsync(string token);
+
+
+        /// <summary>
+        /// 判断当前Token是否有效
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> IsCurrentActiveTokenAsync();
     }
 }

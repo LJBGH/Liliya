@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System.Threading.Tasks;
 
 namespace Liliya.Shared
@@ -25,9 +24,39 @@ namespace Liliya.Shared
             _jwtAppService = jwtAppService;
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, PolicyRequirement requirement)
+        //授权处理
+        protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PolicyRequirement requirement)
         {
-            throw new NotImplementedException();
+            //从AuthorizationHandlerContext转成HttpContext，以便取出表求信息
+            var filterContext = (context.Resource as AuthorizationFilterContext);
+            //获取上下文
+            var httpContext = (context.Resource as AuthorizationFilterContext)?.HttpContext;
+            //获取授权方式
+            var defaultAuthenticate = await Schemes.GetDefaultAuthenticateSchemeAsync();
+
+            var ajaxResult = new AjaxResult();
+
+            if (defaultAuthenticate != null) 
+            {
+                // 验证签发的用户信息
+                var result = await httpContext.AuthenticateAsync(defaultAuthenticate.Name);
+                if (result.Succeeded) 
+                {
+                    //判断是否为已停用的 Token
+                    if (!await _jwtAppService.IsCurrentActiveTokenAsync())
+                    {
+                        //ajaxResult = new AjaxResult("授权失败，请重新登录", AjaxResultType.Fail);
+                        //httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        //filterContext.Result = new JsonResult(ajaxResult);
+                        context.Fail();
+                        return;
+                    }
+
+                    httpContext.User = result.Principal;
+                }
+
+            }
+            context.Fail();
         }
     }
 }

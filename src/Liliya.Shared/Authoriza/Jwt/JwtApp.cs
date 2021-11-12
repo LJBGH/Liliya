@@ -151,5 +151,18 @@ namespace Liliya.Shared
                 return false;
             }
         }
+
+        /// <summary>
+        /// 判断 Token 是否有效
+        /// </summary>
+        /// <param name="token">Token</param>
+        /// <returns></returns>
+        public async Task<bool> IsActiveAsync(string token) => await _cache.GetStringAsync(token) == null;
+
+        /// <summary>
+        /// 判断当前Token是否有效
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> IsCurrentActiveTokenAsync() => await IsActiveAsync(GetToken());
     }
 }

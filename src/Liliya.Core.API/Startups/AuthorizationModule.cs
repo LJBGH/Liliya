@@ -1,6 +1,7 @@
 ﻿using Liliya.Shared;
 using Liliya.Shared.AppSetting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,11 +26,20 @@ namespace Liliya.Core.API.Startups
             };
             //注入配置类
             service.Configure<AuthrizeToken>(configuration.GetSection("Liliya:AuthrizeToken"));
-            service.AddAuthorization();
+
+            //授权
+            service.AddAuthorization(options=> 
+            {
+                //添加授权策略
+                options.AddPolicy("Permission",
+                    policy => policy.Requirements.Add(new PolicyRequirement()));
+            });
+            //认证
             service.AddAuthentication(options =>
             {
                 //认证middleware配置
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
@@ -104,6 +114,8 @@ namespace Liliya.Core.API.Startups
             service.AddHttpContextAccessor();
             //添加Jwt服务
             service.AddSingleton<IJwtApp, JwtApp>();
+            //自定义授权策略
+            service.AddSingleton<IAuthorizationHandler, PolicyHandler>();
         }
     }
 }
