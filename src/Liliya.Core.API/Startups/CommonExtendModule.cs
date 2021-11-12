@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Liliya.AutoMapper;
 using Liliya.SqlSugar.Repository;
 using Microsoft.Extensions.Configuration;
+using Liliya.Redis;
 
 namespace Liliya.Core.API.Startups
 {
@@ -24,6 +25,10 @@ namespace Liliya.Core.API.Startups
             service.AddAutoMapperService();
             //SqlSugar泛型仓储注入
             service.AddScoped(typeof(ISqlSugarRepository<>), typeof(SqlSugarRepository<>));
+            ////CRedis注入
+            //service.AddCRedis();
+            //使用分布式缓存
+            service.AddDistributeRedis();
         }
 
 

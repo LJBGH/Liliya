@@ -2,12 +2,9 @@
 using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
-using Microsoft.Extensions.Options;
-using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Liliya.Services.Sys.Login
@@ -15,12 +12,12 @@ namespace Liliya.Services.Sys.Login
     public class LoginService : ILoginService
     {
         private ISqlSugarRepository<UserEntity> _userRepository;
-        private readonly IOptions<AuthrizeToken> _authrizeToken;
+        private readonly IJwtApp _jwtApp;
 
-        public LoginService(ISqlSugarRepository<UserEntity> userRepository, IOptions<AuthrizeToken> authrizeToken)
+        public LoginService(ISqlSugarRepository<UserEntity> userRepository, IJwtApp jwtApp)
         {
             _userRepository = userRepository;
-            _authrizeToken = authrizeToken;
+            _jwtApp = jwtApp;
         }
 
         /// <summary>
@@ -43,7 +40,7 @@ namespace Liliya.Services.Sys.Login
                 new Claim("Account",user.Account.ToString()),
                 new Claim("UserName",user.Name),
             };
-            var token = TokenHelper.GenerateToken(claims, _authrizeToken.Value);
+            var token = _jwtApp.GenerateToken(claims);
 
             return new AjaxResult("登录成功", token, AjaxResultType.Success);
         }
@@ -52,9 +49,11 @@ namespace Liliya.Services.Sys.Login
         /// 登出
         /// </summary>
         /// <returns></returns>
-        public Task<AjaxResult> SignOutAsync()
+        public async Task<AjaxResult> SignOutAsync()
         {
-            throw new NotImplementedException();
+            var issuccess = await _jwtApp.DeactivateTokenAsync();
+
+            return new AjaxResult(issuccess?"登出成功":"登出失败", issuccess?AjaxResultType.Success:AjaxResultType.Fail);
         }
 
         /// <summary>

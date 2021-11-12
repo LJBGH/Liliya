@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Liliya.AutoMapper\Liliya.AutoMapper.csproj" />
     <ProjectReference Include="..\Liliya.Consul\Liliya.Consul.csproj" />
+    <ProjectReference Include="..\Liliya.Redis\Liliya.Redis.csproj" />
     <ProjectReference Include="..\Liliya.Serilog\Liliya.Serilog.csproj" />
     <ProjectReference Include="..\Liliya.Services\Liliya.Services.csproj" />
     <ProjectReference Include="..\Liliya.Shared\Liliya.Shared.csproj" />

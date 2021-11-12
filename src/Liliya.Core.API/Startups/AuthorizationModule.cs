@@ -16,11 +16,6 @@ namespace Liliya.Core.API.Startups
     {
         public static void AddAuthService(this IServiceCollection service, IConfiguration configuration)
         {
-            //var secretKey = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "SecretKey" });
-            //var issuer = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Issuer" });
-            //var audience = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Audience" });
-            //var expireMins = int.Parse(Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "ExpireMins" }));
-
             AuthrizeToken authrizeToken = new AuthrizeToken
             {
                 SecretKey = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "SecretKey" }),
@@ -30,11 +25,6 @@ namespace Liliya.Core.API.Startups
             };
             //注入配置类
             service.Configure<AuthrizeToken>(configuration.GetSection("Liliya:AuthrizeToken"));
-
-            //Http上下文和用户信息注入
-            service.AddHttpContextAccessor();
-            service.AddSingleton<IUserAuth, UserAuth>();
-
             service.AddAuthorization();
             service.AddAuthentication(options =>
             {
@@ -108,6 +98,12 @@ namespace Liliya.Core.API.Startups
                     //}
                 };
             });
-        }  
+
+
+            //Http上下文和用户信息注入
+            service.AddHttpContextAccessor();
+            //添加Jwt服务
+            service.AddSingleton<IJwtApp, JwtApp>();
+        }
     }
 }

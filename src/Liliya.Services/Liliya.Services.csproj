@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Liliya.Dto\Liliya.Dto.csproj" />
+    <ProjectReference Include="..\Liliya.Redis\Liliya.Redis.csproj" />
   </ItemGroup>
 
 </Project>
