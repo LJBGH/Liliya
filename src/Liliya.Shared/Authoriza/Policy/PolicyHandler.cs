@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Liliya.Shared
 {
+    /// <summary>
+    /// 自定义授权策略
+    /// </summary>
     public class PolicyHandler : AuthorizationHandler<PolicyRequirement>
     {
         /// <summary>
