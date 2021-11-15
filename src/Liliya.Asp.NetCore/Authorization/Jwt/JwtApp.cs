@@ -34,7 +34,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <summary>
         /// 已授权的 Token 信息集合      为什么使用ISet因为Token是不会有重复的元素
         /// </summary>
-        private static ISet<JwtAuthorization> _tokens = new HashSet<JwtAuthorization>();
+        private static ISet<JwtAuthorizationInfo> _tokens = new HashSet<JwtAuthorizationInfo>();
 
 
 
@@ -114,7 +114,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <param name="claims"></param>
         /// <param name="authrizeToken"></param>
         /// <returns></returns>
-        public JwtAuthorization GenerateToken(UserEntity user)
+        public JwtAuthorizationInfo GenerateToken(UserEntity user)
         {
             user.NotNull(nameof(user));
 
@@ -144,7 +144,7 @@ namespace Liliya.Asp.NetCore.Authorization
 
             var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            JwtAuthorization JwtAuthorization = new JwtAuthorization
+            JwtAuthorizationInfo JwtAuthorization = new JwtAuthorizationInfo
             {
                 UserId = user.Id,
                 Token = token,
@@ -179,12 +179,12 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <param name="claims"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public async Task<JwtAuthorization> RefreshTokenAsync(UserEntity user, string token)
+        public async Task<JwtAuthorizationInfo> RefreshTokenAsync(UserEntity user, string token)
         {
             var jwtAuth = GetExistenceToken(token);
             if (jwtAuth == null) 
             {
-                return new JwtAuthorization
+                return new JwtAuthorizationInfo
                 {
                     Token = "未获取到当前Token的信息",
                     Success = false
@@ -217,6 +217,6 @@ namespace Liliya.Asp.NetCore.Authorization
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JwtAuthorization GetExistenceToken(string token) => _tokens.SingleOrDefault(x => x.Token == token);
+        public JwtAuthorizationInfo GetExistenceToken(string token) => _tokens.SingleOrDefault(x => x.Token == token);
     }
 }

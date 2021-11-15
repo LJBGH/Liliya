@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Liliya.Asp.NetCore.Authorization
 {
-    public class JwtAuthorization
+    public class JwtAuthorizationInfo
     {
         /// <summary>
         /// 用户主键
