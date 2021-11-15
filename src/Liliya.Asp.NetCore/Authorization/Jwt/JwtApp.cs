@@ -32,7 +32,7 @@ namespace Liliya.Asp.NetCore.Authorization
         private readonly IOptions<JwtConfig> _jwtConfig;
 
         /// <summary>
-        /// 已授权的 Token 信息集合
+        /// 已授权的 Token 信息集合      为什么使用ISet因为Token是不会有重复的元素
         /// </summary>
         private static ISet<JwtAuthorization> _tokens = new HashSet<JwtAuthorization>();
 
@@ -106,7 +106,6 @@ namespace Liliya.Asp.NetCore.Authorization
                 return new List<string>() { };
             }
         }
-
 
 
         /// <summary>

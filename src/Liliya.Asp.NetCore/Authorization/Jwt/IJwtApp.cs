@@ -47,7 +47,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <param name="claims"></param>
         /// <param name="authrizeToken"></param>
         /// <returns></returns>
-        JwtAuthorization GenerateToken(UserEntity user);
+        JwtAuthorizationInfo GenerateToken(UserEntity user);
 
         /// <summary>
         /// 停用Token
@@ -61,7 +61,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// </summary>
         /// <param name="claims"></param>
         /// <returns></returns>
-        Task<JwtAuthorization> RefreshTokenAsync(UserEntity user, string token);
+        Task<JwtAuthorizationInfo> RefreshTokenAsync(UserEntity user, string token);
 
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public JwtAuthorization GetExistenceToken(string token);
+        public JwtAuthorizationInfo GetExistenceToken(string token);
 
     }
 }
