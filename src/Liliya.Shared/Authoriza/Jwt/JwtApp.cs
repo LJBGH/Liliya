@@ -27,13 +27,14 @@ namespace Liliya.Shared
         /// <summary>
         /// Jwt配置类
         /// </summary>
-        private readonly IOptions<AuthrizeToken> _authrizeToken;
+        private readonly IOptions<JwtConfig> _jwtConfig;
 
-        public JwtApp(IHttpContextAccessor accessor, IDistributedCache cache, IOptions<AuthrizeToken> authrizeToken)
+
+        public JwtApp(IHttpContextAccessor accessor, IDistributedCache cache, IOptions<JwtConfig> jwtConfig)
         {
             _accessor = accessor;
             _cache = cache;
-            _authrizeToken = authrizeToken;
+            _jwtConfig = jwtConfig;
         }
 
 
@@ -111,16 +112,16 @@ namespace Liliya.Shared
             var now = DateTime.Now;
 
             //秘钥 (SymmetricSecurityKey 对安全性的要求，密钥的长度太短会报出异常)
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authrizeToken.Value.SecretKey));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.Value.SecretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var jwt = new JwtSecurityToken
               (
-              issuer: _authrizeToken.Value.Issuer,//设置发行人
-              audience: _authrizeToken.Value.Audience,//设置订阅人
+              issuer: _jwtConfig.Value.Issuer,//设置发行人
+              audience: _jwtConfig.Value.Audience,//设置订阅人
               claims: claims,//设置角色
               notBefore: now,//开始时间
-              expires: now.AddMinutes(_authrizeToken.Value.ExpireMins),//设置过期时间
+              expires: now.AddMinutes(_jwtConfig.Value.ExpireMins),//设置过期时间
               signingCredentials: creds
               );
 
@@ -142,7 +143,7 @@ namespace Liliya.Shared
                     " ",
                     new DistributedCacheEntryOptions
                     {
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(_authrizeToken.Value.ExpireMins)
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(_jwtConfig.Value.ExpireMins)
                     });
                 return true;
             }

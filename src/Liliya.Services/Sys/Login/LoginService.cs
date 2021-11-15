@@ -25,7 +25,7 @@ namespace Liliya.Services.Sys.Login
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public async Task<AjaxResult> LoginAsync(LoginInputDto input)
+        public async Task<AjaxResult> SignInAsync(LoginInputDto input)
         {
             input.NotNull(nameof(input));
             var user = await _userRepository.GetSingleByLambdaAsync(x => x.Account == input.Account);

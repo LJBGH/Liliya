@@ -17,21 +17,21 @@ namespace Liliya.Core.API.Startups
     {
         public static void AddAuthService(this IServiceCollection service, IConfiguration configuration)
         {
-            AuthrizeToken authrizeToken = new AuthrizeToken
+            JwtConfig jwtConfig = new JwtConfig
             {
-                SecretKey = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "SecretKey" }),
-                Issuer = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Issuer" }),
-                Audience = Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "Audience" }),
-                ExpireMins = int.Parse(Appsettings.app(new string[] { "Liliya", "AuthrizeToken", "ExpireMins" }))
+                SecretKey = Appsettings.app(new string[] { "Liliya", "JwtConfig", "SecretKey" }),
+                Issuer = Appsettings.app(new string[] { "Liliya", "JwtConfig", "Issuer" }),
+                Audience = Appsettings.app(new string[] { "Liliya", "JwtConfig", "Audience" }),
+                ExpireMins = int.Parse(Appsettings.app(new string[] { "Liliya", "JwtConfig", "ExpireMins" }))
             };
             //注入配置类
-            service.Configure<AuthrizeToken>(configuration.GetSection("Liliya:AuthrizeToken"));
+            service.Configure<JwtConfig>(configuration.GetSection("Liliya:JwtConfig"));
 
             //授权
             service.AddAuthorization(options=> 
             {
                 //添加授权策略
-                options.AddPolicy("Permission",
+                options.AddPolicy(CostomGlobalPolicy.Name,
                     policy => policy.Requirements.Add(new PolicyRequirement()));
             });
             //认证
@@ -58,12 +58,12 @@ namespace Liliya.Core.API.Startups
                     //过期时间 是否要求Token的Claims中必须包含Expires
                     RequireExpirationTime = true,
                     //Token颁发机构
-                    ValidIssuer = authrizeToken.Issuer,
+                    ValidIssuer = jwtConfig.Issuer,
                     //颁发给谁
-                    ValidAudience = authrizeToken.Audience,
+                    ValidAudience = jwtConfig.Audience,
 
                     //这里的key要进行加密
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authrizeToken.SecretKey)),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.SecretKey)),
 
                     //允许服务器时间偏移量300秒，即我们配置的过期时间加上这个允许偏移的时间值，
                     //才是真正过期的时间(过期时间 + 偏移值)你也可以设置为0，ClockSkew = TimeSpan.Zero

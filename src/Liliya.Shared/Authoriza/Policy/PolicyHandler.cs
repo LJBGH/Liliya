@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Liliya.Shared
@@ -21,45 +22,58 @@ namespace Liliya.Shared
         /// </summary>
         private readonly IJwtApp _jwtAppService;
 
-        public PolicyHandler(IAuthenticationSchemeProvider schemes, IJwtApp jwtAppService)
+        /// <summary>
+        /// 上下文
+        /// </summary>
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public PolicyHandler(IAuthenticationSchemeProvider schemes, IJwtApp jwtAppService,IHttpContextAccessor httpContextAccessor)
         {
             Schemes = schemes;
             _jwtAppService = jwtAppService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         //授权处理
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PolicyRequirement requirement)
         {
             //从AuthorizationHandlerContext转成HttpContext，以便取出表求信息
-            var filterContext = (context.Resource as AuthorizationFilterContext);
-            //获取上下文
-            var httpContext = (context.Resource as AuthorizationFilterContext)?.HttpContext;
-            //获取授权方式
-            var defaultAuthenticate = await Schemes.GetDefaultAuthenticateSchemeAsync();
+            //AuthorizationFilterContext filterContext =  context.Resource as AuthorizationFilterContext;
 
-            var ajaxResult = new AjaxResult();
+            //获取上下文
+            HttpContext httpContext = _httpContextAccessor.HttpContext; 
+
+            //判断请求是否拥有凭据，即有没有登录
+            var defaultAuthenticate = await Schemes.GetDefaultAuthenticateSchemeAsync();
 
             if (defaultAuthenticate != null) 
             {
                 // 验证签发的用户信息
                 var result = await httpContext.AuthenticateAsync(defaultAuthenticate.Name);
+                //Success为True则登陆成功
                 if (result.Succeeded) 
                 {
-                    //判断是否为已停用的 Token
+                    //判断是否为已停用的Token(即缓存黑名单中是否存在该Token)
                     if (!await _jwtAppService.IsCurrentActiveTokenAsync())
                     {
                         //ajaxResult = new AjaxResult("授权失败，请重新登录", AjaxResultType.Fail);
                         //httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                         //filterContext.Result = new JsonResult(ajaxResult);
-                        context.Fail();
-                        return;
-                    }
 
+                        //var response = JsonConvert.SerializeObject(new AjaxResult("授权失败", AjaxResultType.Unauthorized));
+                        ////自定义返回的数据类型
+                        //httpContext.Response.ContentType = "application/json";
+                        ////自定义返回状态码，默认为401 我这里改成 200
+                        //httpContext.Response.StatusCode = StatusCodes.Status200OK;
+                        ////输出Json数据结果
+                        //await httpContext.Response.WriteAsync(response);
+
+                        context.Fail();
+                    }
                     httpContext.User = result.Principal;
                 }
-
             }
-            context.Fail();
+            context.Succeed(requirement);
         }
     }
 }

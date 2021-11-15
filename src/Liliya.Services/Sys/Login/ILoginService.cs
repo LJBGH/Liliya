@@ -14,7 +14,7 @@ namespace Liliya.Services.Sys.Login
         /// 登录
         /// </summary>
         /// <returns></returns>
-        Task<AjaxResult> LoginAsync(LoginInputDto input);
+        Task<AjaxResult> SignInAsync(LoginInputDto input);
 
 
         /// <summary>

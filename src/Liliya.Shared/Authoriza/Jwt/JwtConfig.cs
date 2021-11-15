@@ -7,7 +7,7 @@ namespace Liliya.Shared
     /// <summary>
     /// Jwt认证配置信息
     /// </summary>
-    public class AuthrizeToken
+    public class JwtConfig
     {
         /// <summary>
         /// 需要加密的key

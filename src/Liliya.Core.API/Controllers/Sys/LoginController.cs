@@ -30,9 +30,9 @@ namespace Liliya.Core.API.Controllers.Sys
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<AjaxResult> LoginAsync(LoginInputDto input) 
+        public async Task<AjaxResult> SignInAsync(LoginInputDto input) 
         {
-            return await _loginService.LoginAsync(input);
+            return await _loginService.SignInAsync(input);
         }
 
         /// <summary>
