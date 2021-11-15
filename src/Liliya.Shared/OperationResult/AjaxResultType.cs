@@ -26,9 +26,9 @@ namespace Liliya.Shared
         Unauthorized = 401,
 
         /// <summary>
-        /// 已登录但权限不足
+        /// 授权失败,已登录但权限不足
         /// </summary>
-        [Description("当前用户权限不足")]
+        [Description("授权失败,当前用户权限不足")]
         Uncertified = 403,
 
         /// <summary>

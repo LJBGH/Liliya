@@ -14,7 +14,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// <summary>
     /// 登录模块
     /// </summary>
-    [Authorize(Policy = CostomGlobalPolicy.Name)]
+    [Authorize(/*Policy = CostomGlobalPolicy.Name*/)]
     public class LoginController : ApiControllerBase
     {
         private readonly ILoginService _loginService;

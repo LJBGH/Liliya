@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Liliya.Shared;
+using Liliya.Core.API.Filter;
 
 namespace Liliya.Core.API
 {
@@ -21,7 +22,11 @@ namespace Liliya.Core.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(x=> 
+            {
+                x.Filters.Add<AuditLogFilter>();
+                x.Filters.Add<PermissionAuthorizationFilter>();
+            });
 
             //公共拓展模块注入
             services.AddCommonService(Configuration);

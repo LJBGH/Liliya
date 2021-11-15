@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
@@ -60,17 +61,17 @@ namespace Liliya.Shared
                         //httpContext.Response.StatusCode = StatusCodes.Status403Forbidden;
                         //filterContext.Result = new JsonResult(ajaxResult);
 
-                        //var response = JsonConvert.SerializeObject(new AjaxResult("授权失败", AjaxResultType.Unauthorized));
                         ////自定义返回的数据类型
-                        //httpContext.Response.ContentType = "application/json";
+                        //httpContext.Response.ContentType = "application/json; charset=UTF-8";
+                        //var response = JsonConvert.SerializeObject(new AjaxResult("授权失败", AjaxResultType.Unauthorized));
                         ////自定义返回状态码，默认为401 我这里改成 200
                         //httpContext.Response.StatusCode = StatusCodes.Status200OK;
                         ////输出Json数据结果
                         //await httpContext.Response.WriteAsync(response);
-
+                        //await httpContext.Response.Body.FlushAsync();
                         context.Fail();
+                        return;
                     }
-                    httpContext.User = result.Principal;
                 }
             }
             context.Succeed(requirement);

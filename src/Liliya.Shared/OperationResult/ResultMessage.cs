@@ -18,7 +18,7 @@ namespace Liliya.Shared
         public const string LoadFail = "加载失败";
         public const string DataSuccess = "查询数据成功";
         public const string Unauthorized = "未经授权";
-        public const string Uncertified = "当前用户权限不足";
+        public const string Uncertified = "授权失败，请重新登录";
         public const string UserNameNotFind = "此用户不存在!!";
         public const string PassWordNotCheck = "密码输入错误!!";
         public const string LoginSusscess = "登录成功";

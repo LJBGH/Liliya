@@ -31,15 +31,15 @@ namespace Liliya.Core.API.Startups
             service.AddAuthorization(options=> 
             {
                 //添加授权策略
-                options.AddPolicy(CostomGlobalPolicy.Name,
-                    policy => policy.Requirements.Add(new PolicyRequirement()));
+                //options.AddPolicy(CostomGlobalPolicy.Name,
+                //    policy => policy.Requirements.Add(new PolicyRequirement()));
             });
             //认证
             service.AddAuthentication(options =>
             {
                 //认证middleware配置
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                //options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
@@ -115,7 +115,7 @@ namespace Liliya.Core.API.Startups
             //添加Jwt服务
             service.AddSingleton<IJwtApp, JwtApp>();
             //自定义授权策略
-            service.AddSingleton<IAuthorizationHandler, PolicyHandler>();
+            //service.AddSingleton<IAuthorizationHandler, PolicyHandler>();
         }
     }
 }
