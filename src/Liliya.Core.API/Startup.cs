@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Liliya.Shared;
-using Liliya.Core.API.Filter;
+using Liliya.Asp.NetCore.Filter;
 
 namespace Liliya.Core.API
 {

@@ -162,23 +162,15 @@ namespace Liliya.Asp.NetCore.Authorization
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        public async Task<bool> DeactivateTokenAsync() 
+        public async Task DeactivateTokenAsync() 
         {
-            try
-            {
-                await _cache.SetStringAsync(
-                    GetToken(),
-                    " ",
-                    new DistributedCacheEntryOptions
-                    {
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(_jwtConfig.Value.ExpireMins)
-                    });
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            await _cache.SetStringAsync(
+                   GetToken(),
+                   " ",
+                   new DistributedCacheEntryOptions
+                   {
+                       AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(_jwtConfig.Value.ExpireMins)
+                   });
         }
 
 
