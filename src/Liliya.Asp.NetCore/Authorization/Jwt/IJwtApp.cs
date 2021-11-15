@@ -54,7 +54,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task<bool> DeactivateTokenAsync();
+        Task DeactivateTokenAsync();
 
         /// <summary>
         /// 刷新Token

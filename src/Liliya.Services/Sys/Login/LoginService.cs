@@ -43,9 +43,9 @@ namespace Liliya.Services.Sys.Login
         /// <returns></returns>
         public async Task<AjaxResult> SignOutAsync()
         {
-            var issuccess = await _jwtApp.DeactivateTokenAsync();
+            await _jwtApp.DeactivateTokenAsync();
 
-            return new AjaxResult(issuccess?"登出成功":"登出失败", issuccess?AjaxResultType.Success:AjaxResultType.Fail);
+            return new AjaxResult("登出成功", AjaxResultType.Success);
         }
 
         /// <summary>
