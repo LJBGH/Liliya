@@ -115,22 +115,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Liliya.Core.API.Filter.AuditLogFilter">
-            <summary>
-            记录审计日志
-            </summary>
-        </member>
-        <member name="M:Liliya.Core.API.Filter.AuditLogFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
-            <summary>
-            执行前
-            </summary>
-            <param name="context"></param>
-        </member>
-        <member name="T:Liliya.Core.API.Filter.PermissionAuthorizationFilter">
-            <summary>
-            权限过滤器
-            </summary>
-        </member>
         <member name="M:Liliya.Core.API.Startups.CommonExtendModule.AddCommonService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             公共拓展模块注入
