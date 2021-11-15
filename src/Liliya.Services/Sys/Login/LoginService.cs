@@ -72,5 +72,7 @@ namespace Liliya.Services.Sys.Login
             user.Password = input.NewPassword.ToMD5();
             return await _userRepository.UpdateAsync(user);
         }
+
+
     }
 }

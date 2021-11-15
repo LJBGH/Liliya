@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Liliya.Core.API.Filter
@@ -51,6 +52,16 @@ namespace Liliya.Core.API.Filter
                     context.Result = new JsonResult(result);
                     return;
                 }
+
+                //判断Token是否过期   如果Token不会走到这里过期  JWT异常事件JwtBearerEvents.OnAuthenticationFailed中就会拦截 
+                //if((_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) != null
+                //    && DateTime.Parse(_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(s => s.Type == ClaimTypes.Expiration)?.Value) >= DateTime.Now)
+                //{
+                //    var result = new AjaxResult("登录已过期，请重新登录", AjaxResultType.Uncertified);
+                //    context.HttpContext.Response.StatusCode = StatusCodes.Status200OK;
+                //    context.Result = new JsonResult(result);
+                //    return;
+                //}
             }
         }
     }
