@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace Liliya.Shared
+namespace Liliya.Asp.NetCore.Authorization
 {
     /// <summary>
     /// 自定义授权策略

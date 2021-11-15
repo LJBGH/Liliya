@@ -69,6 +69,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.LoginController.RefreshAccessTokenAsync(Liliya.Dto.Sys.Login.RefreshTokenDto)">
+            <summary>
+            刷新Token
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:Liliya.Core.API.Controllers.Sys.UserController">
             <summary>
             用户管理

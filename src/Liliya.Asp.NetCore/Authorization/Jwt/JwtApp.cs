@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Liliya.Models.Entitys.Sys;
+using Liliya.Shared;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Liliya.Shared
+namespace Liliya.Asp.NetCore.Authorization
 {
     public class JwtApp : IJwtApp
     {
@@ -28,6 +30,12 @@ namespace Liliya.Shared
         /// Jwt配置类
         /// </summary>
         private readonly IOptions<JwtConfig> _jwtConfig;
+
+        /// <summary>
+        /// 已授权的 Token 信息集合
+        /// </summary>
+        private static ISet<JwtAuthorization> _tokens = new HashSet<JwtAuthorization>();
+
 
 
         public JwtApp(IHttpContextAccessor accessor, IDistributedCache cache, IOptions<JwtConfig> jwtConfig)
@@ -107,9 +115,19 @@ namespace Liliya.Shared
         /// <param name="claims"></param>
         /// <param name="authrizeToken"></param>
         /// <returns></returns>
-        public string GenerateToken(List<Claim> claims)
+        public JwtAuthorization GenerateToken(UserEntity user)
         {
-            var now = DateTime.Now;
+            user.NotNull(nameof(user));
+
+            var claims = new List<Claim>
+            {
+                new Claim(JwtRegisteredClaimNames.Jti,user.Id.ToString()),   //唯一标识,用户Id
+                new Claim("Account",user.Account.ToString()),
+                new Claim("UserName",user.Name),
+            };
+
+            var authTime = DateTime.Now;  //授权时间
+            var expiresAt = authTime.AddMinutes(_jwtConfig.Value.ExpireMins); //过期时间
 
             //秘钥 (SymmetricSecurityKey 对安全性的要求，密钥的长度太短会报出异常)
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.Value.SecretKey));
@@ -120,13 +138,23 @@ namespace Liliya.Shared
               issuer: _jwtConfig.Value.Issuer,//设置发行人
               audience: _jwtConfig.Value.Audience,//设置订阅人
               claims: claims,//设置角色
-              notBefore: now,//开始时间
-              expires: now.AddMinutes(_jwtConfig.Value.ExpireMins),//设置过期时间
+              notBefore: authTime,//授权时间
+              expires: expiresAt,//设置过期时间
               signingCredentials: creds
               );
 
             var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-            return token;
+
+            JwtAuthorization JwtAuthorization = new JwtAuthorization
+            {
+                UserId = user.Id,
+                Token = token,
+                Auths = new DateTimeOffset(authTime).ToUnixTimeSeconds(),
+                Expires = new DateTimeOffset(expiresAt).ToUnixTimeSeconds(),
+                Success = true
+            };
+            _tokens.Add(JwtAuthorization);
+            return JwtAuthorization;
         }
 
         /// <summary>
@@ -153,6 +181,33 @@ namespace Liliya.Shared
             }
         }
 
+
+        /// <summary>
+        /// 刷新Token
+        /// </summary>
+        /// <param name="claims"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<JwtAuthorization> RefreshTokenAsync(UserEntity user, string token)
+        {
+            var jwtAuth = GetExistenceToken(token);
+            if (jwtAuth == null) 
+            {
+                return new JwtAuthorization
+                {
+                    Token = "未获取到当前Token的信息",
+                    Success = false
+                };
+            }
+
+            var jwt = GenerateToken(user);
+
+            //停用修改前的 Token 信息
+            await DeactivateTokenAsync();
+
+            return jwt;
+        }
+
         /// <summary>
         /// 判断 Token 是否有效
         /// </summary>
@@ -165,5 +220,12 @@ namespace Liliya.Shared
         /// </summary>
         /// <returns></returns>
         public async Task<bool> IsCurrentActiveTokenAsync() => await IsActiveAsync(GetToken());
+
+        /// <summary>
+        /// 判断Token是否存在
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public JwtAuthorization GetExistenceToken(string token) => _tokens.SingleOrDefault(x => x.Token == token);
     }
 }

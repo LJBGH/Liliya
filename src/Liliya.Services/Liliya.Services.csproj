@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Liliya.Asp.NetCore\Liliya.Asp.NetCore.csproj" />
     <ProjectReference Include="..\Liliya.Dto\Liliya.Dto.csproj" />
     <ProjectReference Include="..\Liliya.Redis\Liliya.Redis.csproj" />
   </ItemGroup>

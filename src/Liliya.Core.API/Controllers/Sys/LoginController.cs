@@ -30,7 +30,7 @@ namespace Liliya.Core.API.Controllers.Sys
         /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
-        public async Task<AjaxResult> SignInAsync(LoginInputDto input) 
+        public async Task<AjaxResult> SignInAsync([FromBody] LoginInputDto input) 
         {
             return await _loginService.SignInAsync(input);
         }
@@ -50,9 +50,20 @@ namespace Liliya.Core.API.Controllers.Sys
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<AjaxResult> UpdatePasswordAsync(PasswordDto input) 
+        public async Task<AjaxResult> UpdatePasswordAsync([FromBody] PasswordDto input) 
         {
             return await _loginService.UpdatePasswordAsync(input);
+        }
+
+        /// <summary>
+        /// 刷新Token
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<AjaxResult> RefreshAccessTokenAsync([FromBody] RefreshTokenDto input) 
+        {
+            return await _loginService.RefreshAccessTokenAsync(input);
         }
     }
 }

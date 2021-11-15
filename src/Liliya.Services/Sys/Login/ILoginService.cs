@@ -29,5 +29,13 @@ namespace Liliya.Services.Sys.Login
         /// </summary>
         /// <returns></returns>
         Task<AjaxResult> UpdatePasswordAsync(PasswordDto input);
+
+
+        /// <summary>
+        /// 刷新Token
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<AjaxResult> RefreshAccessTokenAsync(RefreshTokenDto input);
     }
 }

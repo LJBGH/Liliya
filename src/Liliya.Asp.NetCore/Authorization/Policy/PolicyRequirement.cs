@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Liliya.Shared
+namespace Liliya.Asp.NetCore.Authorization
 {
     /// <summary>
     /// 自定义授权策略
