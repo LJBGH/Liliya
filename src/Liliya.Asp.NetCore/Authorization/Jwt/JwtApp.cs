@@ -175,7 +175,7 @@ namespace Liliya.Asp.NetCore.Authorization
                     });
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
