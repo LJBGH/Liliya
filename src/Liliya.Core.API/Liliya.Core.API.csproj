@@ -23,6 +23,7 @@
     <ProjectReference Include="..\Liliya.Asp.NetCore\Liliya.Asp.NetCore.csproj" />
     <ProjectReference Include="..\Liliya.AutoMapper\Liliya.AutoMapper.csproj" />
     <ProjectReference Include="..\Liliya.Consul\Liliya.Consul.csproj" />
+    <ProjectReference Include="..\Liliya.EventBus\Liliya.EventBus.csproj" />
     <ProjectReference Include="..\Liliya.Redis\Liliya.Redis.csproj" />
     <ProjectReference Include="..\Liliya.Serilog\Liliya.Serilog.csproj" />
     <ProjectReference Include="..\Liliya.Services\Liliya.Services.csproj" />

@@ -30,3 +30,5 @@
 /src/Liliya.WebSockets/obj
 /src/Liliya.Asp.NetCore/bin
 /src/Liliya.Asp.NetCore/obj
+/src/Liliya.EventBus/bin
+/src/Liliya.EventBus/obj
