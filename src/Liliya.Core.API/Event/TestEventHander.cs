@@ -49,12 +49,17 @@ namespace Liliya.Core.API.Event
         /// <returns></returns>
         public async Task<bool> HandleAsync(TestEvent @event, CancellationToken cancellationToken = default)
         {
-            UserEntity user = new UserEntity
-            {
-                Account = "测试",
-                Name = "测试"
-            };
-            await _userRepository.InsertAsync(user);
+            await Task.CompletedTask;
+            Console.WriteLine(@event.Id);
+            Console.WriteLine(@event.Timestamp);
+           
+            //UserEntity user = new UserEntity
+            //{
+            //    Account = "测试",
+            //    Name = "测试"
+            //};
+            //await _userRepository.InsertAsync(user);
+
             return true;
         }
 
