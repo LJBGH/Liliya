@@ -1,5 +1,4 @@
-﻿using Liliya.Asp.NetCore.Authorization;
-using Liliya.Dto.Sys.Login;
+﻿using Liliya.Dto.Sys.Login;
 using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
@@ -32,7 +31,17 @@ namespace Liliya.Services.Sys.Login
             if (user.Password != input.Password.ToMD5())
                 return new AjaxResult("密码错误", AjaxResultType.Fail);
 
-            var token = _jwtApp.GenerateToken(user);
+            var jwtUser = new JwtUser
+            {
+                Id = user.Id,
+                Account = user.Account,
+                Name = user.Name,
+                Password = user.Password,
+                Department = user.Department,
+                JobNumber = user.JobNumber,
+                Position = user.Position
+            };
+            var token = _jwtApp.GenerateToken(jwtUser);
 
             return new AjaxResult("登录成功", token, AjaxResultType.Success);
         }
@@ -80,7 +89,18 @@ namespace Liliya.Services.Sys.Login
             if (user.Password != input.Password.ToMD5())
                 return new AjaxResult("密码错误", AjaxResultType.Fail);
 
-            var token = await _jwtApp.RefreshTokenAsync(user,input.Token);
+            var jwtUser = new JwtUser
+            {
+                Id = user.Id,
+                Account = user.Account,
+                Name = user.Name,
+                Password = user.Password,
+                Department = user.Department,
+                JobNumber = user.JobNumber,
+                Position = user.Position
+            };
+
+            var token = await _jwtApp.RefreshTokenAsync(jwtUser, input.Token);
 
             return new AjaxResult("Token刷新成功", token, AjaxResultType.Success);
         }

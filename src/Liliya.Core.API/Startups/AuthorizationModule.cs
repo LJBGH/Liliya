@@ -1,5 +1,4 @@
-﻿using Liliya.Asp.NetCore.Authorization;
-using Liliya.Shared;
+﻿using Liliya.Shared;
 using Liliya.Shared.AppSetting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;

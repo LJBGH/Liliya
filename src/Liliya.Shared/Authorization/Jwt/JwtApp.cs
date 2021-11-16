@@ -1,5 +1,4 @@
-﻿using Liliya.Models.Entitys.Sys;
-using Liliya.Shared;
+﻿using Liliya.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
@@ -12,7 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Liliya.Asp.NetCore.Authorization
+namespace Liliya.Shared
 {
     public class JwtApp : IJwtApp
     {
@@ -114,7 +113,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <param name="claims"></param>
         /// <param name="authrizeToken"></param>
         /// <returns></returns>
-        public JwtAuthorizationInfo GenerateToken(UserEntity user)
+        public JwtAuthorizationInfo GenerateToken(JwtUser user)
         {
             user.NotNull(nameof(user));
 
@@ -179,7 +178,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <param name="claims"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public async Task<JwtAuthorizationInfo> RefreshTokenAsync(UserEntity user, string token)
+        public async Task<JwtAuthorizationInfo> RefreshTokenAsync(JwtUser user, string token)
         {
             var jwtAuth = GetExistenceToken(token);
             if (jwtAuth == null) 

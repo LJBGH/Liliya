@@ -1,11 +1,10 @@
-﻿using Liliya.Models.Entitys.Sys;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Liliya.Asp.NetCore.Authorization
+namespace Liliya.Shared
 {
     public interface IJwtApp
     {
@@ -47,7 +46,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// <param name="claims"></param>
         /// <param name="authrizeToken"></param>
         /// <returns></returns>
-        JwtAuthorizationInfo GenerateToken(UserEntity user);
+        JwtAuthorizationInfo GenerateToken(JwtUser user);
 
         /// <summary>
         /// 停用Token
@@ -61,7 +60,7 @@ namespace Liliya.Asp.NetCore.Authorization
         /// </summary>
         /// <param name="claims"></param>
         /// <returns></returns>
-        Task<JwtAuthorizationInfo> RefreshTokenAsync(UserEntity user, string token);
+        Task<JwtAuthorizationInfo> RefreshTokenAsync(JwtUser user, string token);
 
 
         /// <summary>

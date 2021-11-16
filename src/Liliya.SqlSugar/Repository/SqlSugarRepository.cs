@@ -18,7 +18,8 @@ namespace Liliya.SqlSugar.Repository
     {
         private ILogger _logger = null;
         public SqlSugarClient _dbContext;
-        private IUserAuth _akliaUser;
+        //private IUserAuth _akliaUser;
+        private IJwtApp _jwtApp;
 
         public SqlSugarRepository(IServiceProvider serviceProvider)
         {
@@ -26,13 +27,15 @@ namespace Liliya.SqlSugar.Repository
             var dbtype = Appsettings.app(new string[] { "Liliya", "DbContexts", "DataBaseType" });
             this._logger = serviceProvider.GetLogger(GetType());
             this._dbContext = SqlSugarDbFactory.GetSqlSugarDb(conn, dbtype, _logger);
-            this._akliaUser = (serviceProvider.GetService(typeof(IUserAuth)) as IUserAuth);
+            //this._akliaUser = (serviceProvider.GetService(typeof(IUserAuth)) as IUserAuth);
+            this._jwtApp = (serviceProvider.GetService(typeof(IJwtApp)) as IJwtApp);
+
         }
 
         /// <summary>
         /// 当前用户Id
         /// </summary>
-        private Guid _userId => _akliaUser.Id;
+        private Guid _userId => _jwtApp.Id;
 
         /// <summary>
         /// 获取DbContext
@@ -79,7 +82,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<bool> AddAsync(T entity)
         {
             entity.NotNull(nameof(entity));
-            entity = entity.CheckInsert<T>(_akliaUser);
+            entity = entity.CheckInsert<T>(_jwtApp);
             return await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
         }
 
@@ -91,7 +94,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<bool> AddRangeAsync(List<T> entitys)
         {
             entitys.NotNull(nameof(entitys));
-            entitys = entitys.CheckInsertRange<T>(_akliaUser);
+            entitys = entitys.CheckInsertRange<T>(_jwtApp);
             return await _dbContext.Insertable<T>(entitys).ExecuteCommandAsync() > 0;
         }
 
@@ -103,7 +106,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<AjaxResult> InsertAsync(T entity)
         {
             entity.NotNull(nameof(entity));
-            entity = entity.CheckInsert<T>(_akliaUser);
+            entity = entity.CheckInsert<T>(_jwtApp);
             var issuccess = await _dbContext.Insertable<T>(entity).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
@@ -128,7 +131,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<AjaxResult> InsertRangeAsync(List<T> entitys)
         {
             entitys.NotNull(nameof(entitys));
-            entitys = entitys.CheckInsertRange<T>(_akliaUser);
+            entitys = entitys.CheckInsertRange<T>(_jwtApp);
             var issuccess = await _dbContext.Insertable<T>(entitys).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.InsertSuccess : ResultMessage.InsertFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
@@ -145,7 +148,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<AjaxResult> UpdateAsync(T entity)
         {
             entity.NotNull(nameof(entity));
-            entity = entity.CheckUpdate<T>(_akliaUser);
+            entity = entity.CheckUpdate<T>(_jwtApp);
             var issuccess = await _dbContext.Updateable<T>(entity).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }
@@ -158,7 +161,7 @@ namespace Liliya.SqlSugar.Repository
         public async Task<AjaxResult> UpdateRangeAsync(List<T> entitys)
         {
             entitys.NotNull(nameof(entitys));
-            entitys = entitys.CheckUpdateRange<T>(_akliaUser);
+            entitys = entitys.CheckUpdateRange<T>(_jwtApp);
             var issuccess = await _dbContext.Updateable<T>(entitys).ExecuteCommandAsync() > 0;
             return new AjaxResult(issuccess == true ? ResultMessage.UpdateSuccess : ResultMessage.UpdateFail, issuccess == true ? AjaxResultType.Success : AjaxResultType.Fail);
         }

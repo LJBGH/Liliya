@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Liliya.Asp.NetCore.Authorization
+namespace Liliya.Shared
 {
     /// <summary>
     /// Jwt认证配置信息

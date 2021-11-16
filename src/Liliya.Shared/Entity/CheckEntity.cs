@@ -17,13 +17,13 @@ namespace Liliya.Shared
         /// <param name="entity"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static T CheckInsert<T>(this T entity, IUserAuth akliaUser) where T : class
+        public static T CheckInsert<T>(this T entity, IJwtApp jwtApp) where T : class
         {
             //判断T是否继承ICreatedAudited接口
             if (typeof(ICreatedAudited).IsAssignableFrom(typeof(T)))
             {
                 ICreatedAudited createdAudited = (ICreatedAudited)entity;
-                createdAudited.CreatedId = akliaUser.Id;
+                createdAudited.CreatedId = jwtApp.Id;
                 createdAudited.CreatedAt = DateTime.Now;
                 var entity1 = (T)createdAudited;
                 return entity1;
@@ -41,7 +41,7 @@ namespace Liliya.Shared
         /// <param name="entitys"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static List<T> CheckInsertRange<T>(this List<T> entitys, IUserAuth akliaUser) where T : class
+        public static List<T> CheckInsertRange<T>(this List<T> entitys, IJwtApp jwtApp) where T : class
         {
             //判断T是否继承ICreatedAudited接口
             if (typeof(ICreatedAudited).IsAssignableFrom(typeof(T)) && entitys.IsNotNull())
@@ -50,7 +50,7 @@ namespace Liliya.Shared
                 foreach (var item in entitys)
                 {
                     ICreatedAudited createdAudited = (ICreatedAudited)item;
-                    createdAudited.CreatedId = akliaUser.Id;
+                    createdAudited.CreatedId = jwtApp.Id;
                     createdAudited.CreatedAt = DateTime.Now;
                     var entity1 = (T)createdAudited;
                     list.Add(entity1);
@@ -71,13 +71,13 @@ namespace Liliya.Shared
         /// <param name="entity"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static T CheckUpdate<T>(this T entity, IUserAuth akliaUser)
+        public static T CheckUpdate<T>(this T entity, IJwtApp jwtApp)
         {
             //判断T是否继承IModifiedAudited接口
             if (typeof(IModifiedAudited).IsAssignableFrom(typeof(T)))
             {
                 IModifiedAudited modifiedAudited = (IModifiedAudited)entity;
-                modifiedAudited.LastModifyId = akliaUser.Id;
+                modifiedAudited.LastModifyId = jwtApp.Id;
                 modifiedAudited.LastModifedAt = DateTime.Now;
                 var entity1 = (T)modifiedAudited;
                 return entity1;
@@ -95,7 +95,7 @@ namespace Liliya.Shared
         /// <param name="entitys"></param>
         /// <param name="akliaUser"></param>
         /// <returns></returns>
-        public static List<T> CheckUpdateRange<T>(this List<T> entitys, IUserAuth akliaUser)
+        public static List<T> CheckUpdateRange<T>(this List<T> entitys, IJwtApp jwtApp)
         {
             //判断T是否继承IModifiedAudited接口
             if (typeof(IModifiedAudited).IsAssignableFrom(typeof(T)) && entitys.IsNotNull())
@@ -104,7 +104,7 @@ namespace Liliya.Shared
                 foreach (var item in entitys)
                 {
                     IModifiedAudited modifiedAudited = (IModifiedAudited)item;
-                    modifiedAudited.LastModifyId = akliaUser.Id;
+                    modifiedAudited.LastModifyId = jwtApp.Id;
                     modifiedAudited.LastModifedAt = DateTime.Now;
                     var entity1 = (T)modifiedAudited;
                     list.Add(entity1);

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace Liliya.Asp.NetCore.Authorization
+namespace Liliya.Shared
 {
     /// <summary>
     /// 自定义授权策略

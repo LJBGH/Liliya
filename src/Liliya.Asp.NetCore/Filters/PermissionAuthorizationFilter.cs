@@ -1,5 +1,4 @@
-﻿using Liliya.Asp.NetCore.Authorization;
-using Liliya.Shared;
+﻿using Liliya.Shared;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
