@@ -29,7 +29,9 @@ namespace Liliya.Shared
         /// <returns></returns>
         public async Task PublishAsync<TEvent>(TEvent @event, CancellationToken cancellationToken = default) where TEvent : IEvent
         {
-            await Task.Factory.StartNew(() => eventQueue.Push(@event));
+            await Task.CompletedTask;
+            eventQueue.Push(@event);
+            //await Task.Factory.StartNew(() => eventQueue.Push(@event));
         }
 
         private void EventQueue_EventPushed(object sender, EventProcessedEventArgs e)
