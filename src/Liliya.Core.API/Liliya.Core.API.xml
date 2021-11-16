@@ -146,6 +146,18 @@
             公共拓展模块注入
             </summary>
         </member>
+        <member name="T:Liliya.Core.API.Startups.EventBusModule">
+            <summary>
+            事件总线模块
+            </summary>
+        </member>
+        <member name="M:Liliya.Core.API.Startups.EventBusModule.UseEventBus(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            事件总线配置
+            </summary>
+            <param name="app"></param>
+            <returns></returns>
+        </member>
         <member name="T:Liliya.Core.API.Startups.MiddlewareModule">
             <summary>
             自定义中间件拓展

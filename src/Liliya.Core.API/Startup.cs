@@ -31,10 +31,6 @@ namespace Liliya.Core.API
             //公共拓展模块注入
             services.AddCommonService(Configuration);
 
-            //事件总线注入
-            services.AddTransient<IEventHandler, TestEventHander>();
-            services.AddSingleton<IEventBus, EventBus>();
-
         }
 
         //Autofac模块注入
@@ -61,10 +57,6 @@ namespace Liliya.Core.API
             //授权认证中间件必须配置路由之后，不然会报错
             app.UseAuthentication(); //认证
             app.UseAuthorization(); //授权
-
-            //监听事件总线
-            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
-            eventBus.Subscribe();
 
             app.UseEndpoints(endpoints =>
             {

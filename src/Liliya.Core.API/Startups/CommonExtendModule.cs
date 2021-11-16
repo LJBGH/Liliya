@@ -29,6 +29,8 @@ namespace Liliya.Core.API.Startups
             //service.AddCRedis();
             //使用分布式缓存
             service.AddDistributeRedis();
+            //事件总线注入
+            service.AddEventBusService();
         }
 
 
@@ -43,6 +45,10 @@ namespace Liliya.Core.API.Startups
 
             //Swagger配置
             app.UseSwaggerService();
+
+            //使用事件总线
+            app.UseEventBus();
+
 
             return app;
         }
