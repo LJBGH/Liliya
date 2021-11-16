@@ -115,6 +115,32 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.TestAsync">
+            <summary>
+            测试接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Liliya.Core.API.Event.TestEventHander">
+            <summary>
+            测试事件
+            </summary>
+        </member>
+        <member name="M:Liliya.Core.API.Event.TestEventHander.CanHandle(Liliya.Shared.IEvent)">
+            <summary>
+            是否可以处理
+            </summary>
+            <param name="event"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Event.TestEventHander.HandleAsync(Liliya.Core.API.Event.TestEvent,System.Threading.CancellationToken)">
+            <summary>
+            事件处理
+            </summary>
+            <param name="event"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
         <member name="M:Liliya.Core.API.Startups.CommonExtendModule.AddCommonService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             公共拓展模块注入

@@ -1,4 +1,5 @@
-﻿using Liliya.Dto.Sys.User;
+﻿using Liliya.Core.API.Event;
+using Liliya.Dto.Sys.User;
 using Liliya.Services.Sys.User;
 using Liliya.Shared;
 using Liliya.Shared.Controller;
@@ -20,9 +21,12 @@ namespace Liliya.Core.API.Controllers.Sys
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        private readonly IEventBus _eventBus;
+
+        public UserController(IUserService userService,IEventBus eventBus)
         {
             _userService = userService;
+            _eventBus = eventBus;
         }
 
         /// <summary>
@@ -78,6 +82,19 @@ namespace Liliya.Core.API.Controllers.Sys
         public async Task<AjaxResult> GetAllAsync() 
         {
             return await _userService.GetAllAsync();
+        }
+
+
+        /// <summary>
+        /// 测试接口
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<AjaxResult> TestAsync() 
+        {
+            await _eventBus.PublishAsync(new TestEvent("测试事件"));
+            return new AjaxResult("测试成功", AjaxResultType.Success);
         }
     }
 }
