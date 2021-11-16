@@ -13,6 +13,11 @@ namespace Liliya.Shared
 
         public EventQueue() { }
 
+
+        /// <summary>
+        /// 推送消息到订阅方
+        /// </summary>
+        /// <param name="event"></param>
         public void Push(IEvent @event)
         {
             OnMessagePushed(new EventProcessedEventArgs(@event));
