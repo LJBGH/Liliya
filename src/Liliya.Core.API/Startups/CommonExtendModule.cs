@@ -30,7 +30,7 @@ namespace Liliya.Core.API.Startups
             //使用分布式缓存
             service.AddDistributeRedis();
             //事件总线注入
-            service.AddEventBusService();
+            service.AddEventBus();
         }
 
 

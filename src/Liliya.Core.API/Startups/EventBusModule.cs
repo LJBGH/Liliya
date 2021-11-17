@@ -15,7 +15,7 @@ namespace Liliya.Core.API.Startups
     public static class EventBusModule
     {
         //自定义事件注入
-        public static void AddEventBusService(this IServiceCollection services) 
+        public static void AddEventBus(this IServiceCollection services) 
         {
             //事件总线注入
             services.AddTransient<IEventHandler, TestEventHander>();
