@@ -3,6 +3,7 @@ using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -92,6 +93,29 @@ namespace Liliya.Services.Sys.User
             var list = await _userRepository.GetAllAsync();
             var result = list.MapToList<UserOutDto>();
             return new AjaxResult(ResultMessage.LoadSucces, result, AjaxResultType.Success);
+        }
+
+        /// <summary>
+        /// 用户信息导入
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public async Task<AjaxResult> ImportUserAsync(List<UserImportDto> input)
+        {
+            await Task.CompletedTask;
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 用户信息导出
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<UserExportDto>> ExportUserAsync()
+        {
+            var list = await _userRepository.GetByLambdaAsync(x => x.IsDeleted == false);
+
+            var result = list.MapToList<UserExportDto>().ToList();
+            return result;
         }
     }
 }

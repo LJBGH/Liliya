@@ -43,5 +43,18 @@ namespace Liliya.Services.Sys.User
         /// <returns></returns>
         Task<AjaxResult> GetAllAsync();
 
+        /// <summary>
+        /// 用户信息导入
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        Task<AjaxResult> ImportUserAsync(List<UserImportDto> input);
+
+        /// <summary>
+        /// 用户信息导出
+        /// </summary>
+        /// <returns></returns>
+        Task<List<UserExportDto>> ExportUserAsync();
+
     }
 }

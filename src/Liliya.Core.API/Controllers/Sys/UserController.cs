@@ -1,11 +1,16 @@
 ﻿using Liliya.AspNetCore.ApiBase;
+using Liliya.Common.Excel;
 using Liliya.Core.API.Event;
 using Liliya.Dto.Sys.User;
 using Liliya.Services.Sys.User;
 using Liliya.Shared;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Liliya.Core.API.Controllers.Sys
@@ -79,6 +84,52 @@ namespace Liliya.Core.API.Controllers.Sys
         public async Task<AjaxResult> GetAllAsync() 
         {
             return await _userService.GetAllAsync();
+        }
+
+
+        /// <summary>
+        /// 用户信息表解析
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<List<UserImportDto>> ParseUserExcelAsync(IFormFile file)
+        {
+            await Task.CompletedTask;
+            var list = ExcelHelper<UserImportDto>.UpLoad(file, 0);
+            return list;
+        }
+
+        /// <summary>
+        /// 用户信息导入
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<AjaxResult> ImportUserAsync([FromBody] List<UserImportDto> input) 
+        {
+            return await _userService.ImportUserAsync(input);
+        }
+
+        /// <summary>
+        /// 用户信息导出
+        /// </summary>
+        /// <param name="environment"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<FileResult> ExportUserAsync([FromServices] IWebHostEnvironment environment)
+        {
+            var userlist = await _userService.ExportUserAsync();
+
+            string folderpath = Path.Combine(environment.WebRootPath, $"export");
+
+            var fileName = $"用户信息-{DateTime.Now.ToString("yyyyMMddhhmmss")}-{RandomExtensions.GetRandom()}.xlsx";
+
+            var file = ExcelHelper<UserExportDto>.SaveExcel(userlist, $"{folderpath}\\{fileName}");
+
+            var filestream = new FileStream(file, FileMode.Open);
+
+            return File(filestream, "application/vnd.ms-excel", fileName);
         }
 
 

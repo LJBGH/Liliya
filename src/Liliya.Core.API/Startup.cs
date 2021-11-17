@@ -47,8 +47,6 @@ namespace Liliya.Core.API
             //公共组件配置
             app.UseCommonExtension();
 
-            //自定义异常中间件
-            app.CustomerMiddleware();
 
             app.UseRouting();
 

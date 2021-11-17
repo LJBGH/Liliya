@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Liliya.Common\Liliya.Common.csproj" />
     <ProjectReference Include="..\Liliya.Models\Liliya.Models.csproj" />
     <ProjectReference Include="..\Liliya.Shared\Liliya.Shared.csproj" />
   </ItemGroup>

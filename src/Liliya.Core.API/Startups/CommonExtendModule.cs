@@ -49,6 +49,11 @@ namespace Liliya.Core.API.Startups
             //使用事件总线
             app.UseEventBus();
 
+            //自定义异常中间件
+            app.CustomerMiddleware();
+
+            //使用静态文件
+            app.UseStaticFiles();
 
             return app;
         }

@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Excel\" />
+    <PackageReference Include="EPPlus" Version="5.8.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.12" />
   </ItemGroup>
 
 </Project>

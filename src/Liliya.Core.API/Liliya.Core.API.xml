@@ -115,6 +115,27 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.ParseUserExcelAsync(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            用户信息表解析
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.ImportUserAsync(System.Collections.Generic.List{Liliya.Dto.Sys.User.UserImportDto})">
+            <summary>
+            用户信息导入
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.ExportUserAsync(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            用户信息导出
+            </summary>
+            <param name="environment"></param>
+            <returns></returns>
+        </member>
         <member name="M:Liliya.Core.API.Controllers.Sys.UserController.TestAsync">
             <summary>
             测试接口
