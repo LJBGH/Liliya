@@ -22,8 +22,8 @@ namespace Liliya.Core.API
         {
             services.AddControllers(x=> 
             {
-                x.Filters.Add<AuditLogFilter>();
-                x.Filters.Add<PermissionAuthorizationFilter>();
+                x.Filters.Add<AuditLogFilter>(); //审计日志过滤器
+                x.Filters.Add<PermissionAuthorizationFilter>(); //授权过滤器
             });
 
             //公共拓展模块注入
