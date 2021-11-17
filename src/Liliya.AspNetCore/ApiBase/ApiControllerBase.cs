@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Liliya.Shared.Controller
+namespace Liliya.AspNetCore.ApiBase
 {
     [Route("liliya/[controller]/[action]")]
     [ApiController]

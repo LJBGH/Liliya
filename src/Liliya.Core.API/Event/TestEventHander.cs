@@ -1,6 +1,7 @@
 ﻿using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,13 +53,25 @@ namespace Liliya.Core.API.Event
             await Task.CompletedTask;
             Console.WriteLine(@event.Id);
             Console.WriteLine(@event.Timestamp);
-           
+
             //UserEntity user = new UserEntity
             //{
             //    Account = "测试",
             //    Name = "测试"
             //};
             //await _userRepository.InsertAsync(user);
+
+            var table = _userRepository.DbContext().Ado.SqlQuery<decimal>("", new List<SugarParameter>
+            {
+                new SugarParameter("@name", "张三"),
+                new SugarParameter("@age",20)
+            });
+
+            var table1 = _userRepository.DbContext().Ado.UseStoredProcedure().SqlQuery<decimal>("", new List<SugarParameter>
+            {
+                new SugarParameter("@name", "张三"),
+                new SugarParameter("@age",20)
+            });
 
             return true;
         }

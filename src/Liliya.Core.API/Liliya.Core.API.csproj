@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Liliya.Asp.NetCore\Liliya.Asp.NetCore.csproj" />
+    <ProjectReference Include="..\Liliya.AspNetCore\Liliya.AspNetCore.csproj" />
     <ProjectReference Include="..\Liliya.AutoMapper\Liliya.AutoMapper.csproj" />
     <ProjectReference Include="..\Liliya.Consul\Liliya.Consul.csproj" />
     <ProjectReference Include="..\Liliya.Redis\Liliya.Redis.csproj" />

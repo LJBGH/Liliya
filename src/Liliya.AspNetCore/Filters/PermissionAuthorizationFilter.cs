@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Liliya.Asp.NetCore.Filter
+namespace Liliya.AspNetCore.Filter
 {
     /// <summary>
     /// 权限过滤器

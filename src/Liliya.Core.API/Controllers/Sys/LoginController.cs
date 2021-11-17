@@ -1,12 +1,9 @@
-﻿using Liliya.Dto.Sys.Login;
+﻿using Liliya.AspNetCore.ApiBase;
+using Liliya.Dto.Sys.Login;
 using Liliya.Services.Sys.Login;
 using Liliya.Shared;
-using Liliya.Shared.Controller;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Liliya.Core.API.Controllers.Sys
