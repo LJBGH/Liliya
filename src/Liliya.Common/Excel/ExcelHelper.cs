@@ -212,10 +212,13 @@ namespace Liliya.Common.Excel
                         {
                             ExcelParameterVo excelParameterVo = excelParameters[col];//得到列名对象
                             worksheet.Cells[1, i].Value = excelParameterVo.ColumnName;//设置列名
+                          
                             worksheet.Cells[1, i].Style.Font.Bold = true;//字体为粗体
                             worksheet.Cells[1, i].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;//水平居中
+
                             //worksheet.Cells[1, i].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;//设置样式类型
                             //worksheet.Cells[1, i].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.FromArgb(159, 197, 232));//设置单元格背景色
+                           
                             worksheet.Column(i).Width = excelParameterVo.ColumnWidth;//设置列宽
                         }
                         //传入的列名 row用于得到data的下标，j用于写入Excel的某一行
@@ -253,6 +256,7 @@ namespace Liliya.Common.Excel
                             ExcelParameterVo excelParameterVo = excelParameters[col];//得到列名对象
                             worksheet.Cells[1, i].Value = excelParameterVo.ColumnName;//设置列名
                             worksheet.Column(i).Width = excelParameterVo.ColumnWidth;//设置列宽
+                            //worksheet.Cells[1, i].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;//水平居中
                         }
                     }
                     package.SaveAs(fileInfo);
