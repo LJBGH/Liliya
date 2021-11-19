@@ -8,9 +8,9 @@ namespace Liliya.Shared
     /// 如果使用AutoMapper会跟官方冲突，所以在前面加了项目代号
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class AkliaAutoMapperAttribute  : Attribute
+    public class LiliyaAutoMapperAttribute  : Attribute
     {
-        public AkliaAutoMapperAttribute(params Type[] targetTypes)
+        public LiliyaAutoMapperAttribute(params Type[] targetTypes)
         {
             targetTypes.NotNull(nameof(targetTypes));
             TargetTypes = targetTypes;
@@ -21,9 +21,9 @@ namespace Liliya.Shared
         /// </summary>
         public Type[] TargetTypes { get; private set; }
 
-        public virtual AkliaAutoMapDirection MapDirection
+        public virtual LiliyaAutoMapDirection MapDirection
         {
-            get { return AkliaAutoMapDirection.From | AkliaAutoMapDirection.To; }
+            get { return LiliyaAutoMapDirection.From | LiliyaAutoMapDirection.To; }
         }
     }
 }

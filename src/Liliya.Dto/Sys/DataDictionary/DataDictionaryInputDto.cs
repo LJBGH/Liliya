@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Liliya.Dto.Sys.DataDictionary
 {
-    [AkliaAutoMapper(typeof(DataDictionaryEntity))]
+    [LiliyaAutoMapper(typeof(DataDictionaryEntity))]
     public class DataDictionaryInputDto
     {
         /// <summary>

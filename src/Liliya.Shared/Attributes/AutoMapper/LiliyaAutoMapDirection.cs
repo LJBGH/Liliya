@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Liliya.Shared
 {
-    public enum AkliaAutoMapDirection
+    public enum LiliyaAutoMapDirection
     {
         From,
 

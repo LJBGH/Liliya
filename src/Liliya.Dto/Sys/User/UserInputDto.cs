@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace Liliya.Dto.Sys.User
 {
-    [AkliaAutoMapper(typeof(UserEntity))]
+    [LiliyaAutoMapper(typeof(UserEntity))]
     public class UserInputDto
     {
 

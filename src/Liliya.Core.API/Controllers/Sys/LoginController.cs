@@ -2,6 +2,7 @@
 using Liliya.Dto.Sys.Login;
 using Liliya.Services.Sys.Login;
 using Liliya.Shared;
+using Liliya.Shared.Attributes.Audit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// 登录模块
     /// </summary>
     [Authorize(/*Policy = CostomGlobalPolicy.Name*/)]
+    [AuditedLog]//开启审计日志
     public class LoginController : ApiControllerBase
     {
         private readonly ILoginService _loginService;
