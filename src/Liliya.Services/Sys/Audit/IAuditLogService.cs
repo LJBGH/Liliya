@@ -21,6 +21,7 @@ namespace Liliya.Services.Sys.Audit
         /// 分页获取审计日志
         /// </summary>
         /// <returns></returns>
-        Task<AjaxResult> GetPageAsync();
+        Task<PageResult<AuditLogOutDto>> GetPageAsync(PageRequest pageRequest);
+  
     }
 }

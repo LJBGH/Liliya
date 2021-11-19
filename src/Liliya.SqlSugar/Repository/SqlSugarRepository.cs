@@ -329,39 +329,22 @@ namespace Liliya.SqlSugar.Repository
         }
 
 
-        ///// <summary>
-        ///// 分页查询拓展
-        ///// </summary>
-        ///// <returns></returns>
-        //public async Task<IPageResult<T>> GetPageListAsync(PageRequest request)
-        //{
-        //    request.NotNull(nameof(request));
-        //    Expression<Func<T, bool>> expression = null;
-        //    expression = request == null ? null : FilterHelper.GetExpression<T>(request.queryFilter);
+        /// <summary>
+        /// 分页查询拓展
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public async Task<IPageResult<T>> GetPageListAsync(PageRequest request) 
+        {
+            Expression<Func<T, bool>> expression = null;
+            expression = request == null ? null : ExpressionParser.ParserConditions<T>(request.QueryFilter);
 
-        //    RefAsync<int> total = 0;
-        //    var pageInfo = await _dbContext.Queryable<T>().Where(expression).ToPageListAsync(request.PageIndex, request.PageRow, total); ;
-        //    var result = new PageResult<T>(total, pageInfo);
-        //    return result;
-        //}
+            RefAsync<int> total = 0;
+            var pageInfo = await _dbContext.Queryable<T>().Where(expression).ToPageListAsync(request.PageIndex, request.PageRow, total); ;
 
-
-        ///// <summary>
-        ///// 分页获取拓展
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //public async Task<IPageResult<T>> GetPageListAsync(LinqExpressionModel request)
-        //{
-        //    Expression<Func<T, bool>> expression = null;
-        //    expression = request == null ? null : LinqExpressionParser.ParserConditions<T>(request.SelectConditionModel);
-
-        //    RefAsync<int> total = 0;
-        //    var pageInfo = await _dbContext.Queryable<T>().Where(expression).ToPageListAsync(request.PageIndex, request.PageRow, total); ;
-
-        //    var result = new PageResult<T>(total, pageInfo);
-        //    return result;
-        //}
+            var result = new PageResult<T>(total, pageInfo);
+            return result;
+        }
 
 
         #endregion

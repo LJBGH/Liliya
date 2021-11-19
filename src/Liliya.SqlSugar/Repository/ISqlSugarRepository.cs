@@ -149,18 +149,12 @@ namespace Liliya.SqlSugar.Repository
         ISugarQueryable<T> GetIQueryableAsync();
 
 
-        ///// <summary>
-        ///// 分页获取拓展
-        ///// </summary>
-        ///// <returns></returns>
-        //Task<IPageResult<T>> GetPageListAsync(PageRequest request);
-
-        ///// <summary>
-        ///// 分页拓展
-        ///// </summary>
-        ///// <param name="request"></param>
-        ///// <returns></returns>
-        //Task<IPageResult<T>> GetPageListAsync(LinqExpressionModel request);
+        /// <summary>
+        /// 分页拓展
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        Task<IPageResult<T>> GetPageListAsync(PageRequest request);
 
         #endregion
     }

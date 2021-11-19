@@ -3,9 +3,8 @@ using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Liliya.Services.Sys.Audit
 {
@@ -36,9 +35,13 @@ namespace Liliya.Services.Sys.Audit
         /// 分页获取审计日志
         /// </summary>
         /// <returns></returns>
-        public async Task<AjaxResult> GetPageAsync()
+        public async Task<PageResult<AuditLogOutDto>> GetPageAsync(PageRequest pageRequest)
         {
-            throw new NotImplementedException();
+            var result = await _auditRepository.GetPageListAsync(pageRequest);
+
+            result.Data.MapToList<AuditLogOutDto>();
+
+            return result as PageResult<AuditLogOutDto>;
         }
     }
 }
