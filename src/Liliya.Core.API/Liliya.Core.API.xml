@@ -15,6 +15,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Liliya.Core.API.Controllers.Sys.AuditLogController">
+            <summary>
+            审计日志管理
+            </summary>
+        </member>
         <member name="T:Liliya.Core.API.Controllers.Sys.DataDictionaryController">
             <summary>
             数据字典管理

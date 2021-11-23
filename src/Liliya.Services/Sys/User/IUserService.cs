@@ -56,5 +56,12 @@ namespace Liliya.Services.Sys.User
         /// <returns></returns>
         Task<List<UserExportDto>> ExportUserAsync();
 
+
+        /// <summary>
+        /// 测试
+        /// </summary>
+        /// <returns></returns>
+        Task<AjaxResult> TestAsync();
+
     }
 }

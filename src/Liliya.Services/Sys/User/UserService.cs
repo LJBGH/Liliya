@@ -2,6 +2,7 @@
 using Liliya.Models.Entitys.Sys;
 using Liliya.Shared;
 using Liliya.SqlSugar.Repository;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +117,23 @@ namespace Liliya.Services.Sys.User
 
             var result = list.MapToList<UserExportDto>().ToList();
             return result;
+        }
+
+
+        /// <summary>
+        /// 测试
+        /// </summary>
+        /// <returns></returns>
+        public async Task<AjaxResult> TestAsync() 
+        {
+            var data = await _userRepository.DbContext().Queryable<UserEntity>().GroupBy(x => x.Department).Select(x => new
+            {
+                Department = x.Department,
+                Number = SqlFunc.AggregateSum(int.Parse(x.JobNumber))
+
+            }).ToListAsync();
+
+            return new AjaxResult(ResultMessage.LoadSucces, data, AjaxResultType.Success);
         }
     }
 }

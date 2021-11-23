@@ -141,8 +141,9 @@ namespace Liliya.Core.API.Controllers.Sys
         [AllowAnonymous]
         public async Task<AjaxResult> TestAsync() 
         {
-            await _eventBus.PublishAsync(new TestEvent("测试事件"));
-            return new AjaxResult("测试成功", AjaxResultType.Success);
+            return await _userService.TestAsync();
+            //await _eventBus.PublishAsync(new TestEvent("测试事件"));
+            //return new AjaxResult("测试成功", AjaxResultType.Success);
         }
     }
 }
