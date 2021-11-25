@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System.IO;
 
 
@@ -66,7 +67,6 @@ namespace Liliya.Swagger
                         new []{ "readAccess", "writeAccess" }
                     }
                 });
-
             });
         }
 
@@ -80,6 +80,9 @@ namespace Liliya.Swagger
             {
                 c.SwaggerEndpoint(_url, _title);
                 c.RoutePrefix = string.Empty;
+
+                //Swagger界面打开时自动折叠
+                c.DocExpansion(DocExpansion.None); 
             } );
             return app;
         }
