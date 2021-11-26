@@ -17,7 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Liliya.Models\Liliya.Models.csproj" />
-    <ProjectReference Include="..\Liliya.Shared\Liliya.Shared.csproj" />
   </ItemGroup>
 
 </Project>
