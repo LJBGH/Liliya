@@ -62,13 +62,9 @@ namespace Liliya.Test
             IExporter exporter = new ExcelExporter();
 
 
-            var filePath = $"C://Users//SocialMED-260//Desktop//MyStore//Liliya//src//Liliya.Core.API//wwwroot//export//{DateTime.Now.ToString("yyyyyMMddhhmmss")}.xlsx";
+            var filePath = $"C://Users//SocialMED-260//Desktop//MyStore//Liliya//src//Liliya.Core.API//wwwroot//export//MagicodeTest{DateTime.Now.ToString("yyyyyMMddhhmmss")}.xlsx";
 
             var result = await exporter.Export(filePath, users);
-
-    
-
-
 
         }
     }

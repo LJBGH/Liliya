@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Liliya.Test.Magicodes
 {
-    [ExcelExporter(Name="测试",AutoCenter =true,TableStyle = OfficeOpenXml.Table.TableStyles.None)]
+    [ExcelExporter(Name="测试",AutoCenter =true,TableStyle = OfficeOpenXml.Table.TableStyles.Dark10)]
     public class UserExportDto
     {
         /// <summary>
