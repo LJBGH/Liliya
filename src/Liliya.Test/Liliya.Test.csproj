@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Magicodes.IE.Core" Version="2.5.6.3" />
+    <PackageReference Include="Magicodes.IE.Excel" Version="2.5.6.3" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
@@ -15,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Liliya.Models\Liliya.Models.csproj" />
+    <ProjectReference Include="..\Liliya.Shared\Liliya.Shared.csproj" />
   </ItemGroup>
 
 </Project>
