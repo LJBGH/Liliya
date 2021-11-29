@@ -1,4 +1,5 @@
 using Liliya.Models.Entitys.Sys;
+using Liliya.Shared;
 using Liliya.Test.Magicodes;
 using Magicodes.ExporterAndImporter.Core;
 using Magicodes.ExporterAndImporter.Excel;
@@ -64,7 +65,11 @@ namespace Liliya.Test
 
             var filePath = $"C://Users//SocialMED-260//Desktop//MyStore//Liliya//src//Liliya.Core.API//wwwroot//export//MagicodeTest{DateTime.Now.ToString("yyyyyMMddhhmmss")}.xlsx";
 
-            var result = await exporter.Export(filePath, users);
+            var filebyte  = await exporter.ExportAsByteArray(users);
+
+            FileHelper.CeeateFile(filePath, filebyte);
+
+            
 
         }
     }
