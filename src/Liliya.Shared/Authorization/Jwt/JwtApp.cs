@@ -50,7 +50,8 @@ namespace Liliya.Shared
         /// <summary>
         /// 用户名
         /// </summary>
-        public string Name => _accessor.HttpContext.User.Identity.Name;
+        //public string Name => _accessor.HttpContext.User.Identity.Name;
+        public string Name => GetClaimValueByType("UserName").FirstOrDefault();
 
         /// <summary>
         /// 用户ID

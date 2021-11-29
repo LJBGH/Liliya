@@ -20,6 +20,13 @@
             审计日志管理
             </summary>
         </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.AuditLogController.GetPageAsync(Liliya.Shared.PageRequest)">
+            <summary>
+            获取审计日志分页列表
+            </summary>
+            <param name="pageRequest"></param>
+            <returns></returns>
+        </member>
         <member name="T:Liliya.Core.API.Controllers.Sys.DataDictionaryController">
             <summary>
             数据字典管理

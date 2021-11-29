@@ -28,20 +28,19 @@ namespace Liliya.Services.Sys.Audit
         public async Task<AjaxResult> AddAsync(AuditLogInputDto input)
         {
             var entity = input.MapTo<AuditLogEntity>();
-            return await _auditRepository.InsertNoCheckAsync(entity);
+            entity.Id = Guid.NewGuid();
+            return await _auditRepository.InsertAsync(entity);
         }
 
         /// <summary>
         /// 分页获取审计日志
         /// </summary>
         /// <returns></returns>
-        public async Task<PageResult<AuditLogOutDto>> GetPageAsync(PageRequest pageRequest)
+        public async Task<IPageResult<AuditLogEntity>> GetPageAsync(PageRequest pageRequest)
         {
             var result = await _auditRepository.GetPageListAsync(pageRequest);
 
-            result.Data.MapToList<AuditLogOutDto>();
-
-            return result as PageResult<AuditLogOutDto>;
+            return result;
         }
     }
 }

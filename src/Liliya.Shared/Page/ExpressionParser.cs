@@ -36,7 +36,7 @@ namespace Liliya.Shared
                 {
                     expressions.Add(ParseCondition(item, parameter)); ;
                 }
-                return queryFilter.LinqSelectType == LinqSelectType.And
+                return queryFilter.ConditionType == ConditionType.And
                     ? expressions.Aggregate(Expression.AndAlso)
                     : expressions.Aggregate(Expression.OrElse);
             }

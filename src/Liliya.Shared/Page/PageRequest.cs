@@ -49,7 +49,7 @@ namespace Liliya.Shared
         /// <summary>
         /// 查询条件类型
         /// </summary>
-        public LinqSelectType LinqSelectType { get; set; }
+        public ConditionType ConditionType { get; set; }
 
         /// <summary>
         /// 查询条件集合
@@ -130,7 +130,7 @@ namespace Liliya.Shared
     /// <summary>
     /// 查询条件类型
     /// </summary>
-    public enum LinqSelectType
+    public enum ConditionType
     {
         /// <summary>
         /// 并且

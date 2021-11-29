@@ -4,6 +4,7 @@ using Liliya.Core.API.Event;
 using Liliya.Dto.Sys.User;
 using Liliya.Services.Sys.User;
 using Liliya.Shared;
+using Liliya.Shared.Attributes.Audit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -19,6 +20,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// 用户管理
     /// </summary>
     [Authorize(/*Policy = CostomGlobalPolicy.Name*/)]
+    [AuditedLog]
     public class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;

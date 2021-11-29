@@ -2,6 +2,7 @@
 using Liliya.Dto.Sys.DataDictionary;
 using Liliya.Services.Sys.DataDictionary;
 using Liliya.Shared;
+using Liliya.Shared.Attributes.Audit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace Liliya.Core.API.Controllers.Sys
     /// 数据字典管理
     /// </summary>
     [Authorize]
+    [AuditedLog]
     public class DataDictionaryController : ApiControllerBase
     {
 
