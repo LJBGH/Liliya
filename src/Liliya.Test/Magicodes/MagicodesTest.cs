@@ -5,9 +5,6 @@ using Magicodes.ExporterAndImporter.Excel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SqlSugar;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Liliya.Test.Magicodes
