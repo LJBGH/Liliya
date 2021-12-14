@@ -340,7 +340,7 @@ namespace Liliya.SqlSugar.Repository
             expression = request == null ? null : ExpressionParser.ParserConditions<T>(request.QueryFilter);
 
             RefAsync<int> total = 0;
-            var pageInfo = await _dbContext.Queryable<T>().Where(expression).ToPageListAsync(request.PageIndex, request.PageRow, total); ;
+            var pageInfo = await _dbContext.Queryable<T>().Where(expression).ToPageListAsync(request.PageIndex, request.PageRow, total);
 
             var result = new PageResult<T>(total, pageInfo);
             return result;
