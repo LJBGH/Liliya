@@ -6,6 +6,9 @@ using Liliya.AutoMapper;
 using Liliya.SqlSugar.Repository;
 using Microsoft.Extensions.Configuration;
 using Liliya.Redis;
+using System;
+using Liliya.WebSockets;
+using Liliya.WebSockets.SocketDictionary;
 
 namespace Liliya.Core.API.Startups
 {
@@ -31,6 +34,9 @@ namespace Liliya.Core.API.Startups
             service.AddDistributeRedis();
             //事件总线注入
             service.AddEventBus();
+
+            //WebSocket服务注入
+            service.AddSingleton<IWebSocketDictionary, WebSocketDictionary>();
         }
 
 
@@ -54,6 +60,17 @@ namespace Liliya.Core.API.Startups
 
             //使用静态文件
             app.UseStaticFiles();
+
+
+
+            //配置WebSocket中间件
+            var webSocketOptions = new WebSocketOptions()
+            {
+                KeepAliveInterval = TimeSpan.FromSeconds(120),
+            };
+            app.UseWebSockets(webSocketOptions);
+            app.UseMiddleware<WebSocketHandlerMiddleware>();
+
 
             return app;
         }

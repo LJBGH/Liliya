@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Liliya.Services\Liliya.Services.csproj" />
     <ProjectReference Include="..\Liliya.Shared\Liliya.Shared.csproj" />
     <ProjectReference Include="..\Liliya.Swagger\Liliya.Swagger.csproj" />
+    <ProjectReference Include="..\Liliya.WebSockets\Liliya.WebSockets.csproj" />
   </ItemGroup>
 
   <ItemGroup>
