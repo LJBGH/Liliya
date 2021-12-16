@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Liliya.AspNetCore.Filter;
+using Liliya.WebSockets;
 
 namespace Liliya.Core.API
 {
@@ -28,6 +29,8 @@ namespace Liliya.Core.API
 
             //公共拓展模块注入
             services.AddCommonService(Configuration);
+
+            WatsonWebSocketMiddleware.StartWatsonWebsocket();
 
         }
 

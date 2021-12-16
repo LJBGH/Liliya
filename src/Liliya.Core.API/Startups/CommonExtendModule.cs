@@ -64,12 +64,12 @@ namespace Liliya.Core.API.Startups
 
 
             //配置WebSocket中间件
-            var webSocketOptions = new WebSocketOptions()
-            {
-                KeepAliveInterval = TimeSpan.FromSeconds(120),
-            };
-            app.UseWebSockets(webSocketOptions);
-            app.UseMiddleware<WebSocketHandlerMiddleware>();
+            //var webSocketOptions = new WebSocketOptions()
+            //{
+            //    KeepAliveInterval = TimeSpan.FromSeconds(120),
+            //};
+            //app.UseWebSockets(webSocketOptions);
+            //app.UseMiddleware<WebSocketHandlerMiddleware>();
 
 
             return app;
