@@ -31,7 +31,8 @@ namespace Liliya.Core.API
             //公共拓展模块注入
             services.AddCommonService(Configuration);
 
-            WatsonWebSocketHelper.StartWatsonWebsocket();
+            //WatsonWebSocket测试
+            //WatsonWebSocketHelper.StartWatsonWebsocket();
 
         }
 

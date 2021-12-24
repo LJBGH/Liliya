@@ -97,7 +97,7 @@ namespace  Liliya.WebSockets
 
                             if (msg == "ping") 
                             {                      
-                                Console.WriteLine("dassfdddddd");
+                                Console.WriteLine("Ping Success");
                             }
 
                             Console.WriteLine($"收到客户端消息:{msg}");
