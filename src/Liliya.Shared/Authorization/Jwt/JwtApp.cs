@@ -126,8 +126,8 @@ namespace Liliya.Shared
             };
 
             var authTime = DateTime.Now;  //授权时间
-            //var expiresAt = authTime.AddMinutes(_jwtConfig.Value.ExpireMins); //过期时间
-            var expiresAt = authTime.AddSeconds(30); //过期时间
+            var expiresAt = authTime.AddMinutes(_jwtConfig.Value.ExpireMins); //过期时间
+            //var expiresAt = authTime.AddSeconds(30); //过期时间
 
             //秘钥 (SymmetricSecurityKey 对安全性的要求，密钥的长度太短会报出异常)
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtConfig.Value.SecretKey));

@@ -52,6 +52,10 @@ namespace Liliya.Core.API
             //公共组件配置
             app.UseCommonExtension();
 
+            //启用Https
+            //app.UseHttpsRedirection();
+
+
 
             app.UseRouting();
 
