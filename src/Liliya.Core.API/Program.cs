@@ -27,7 +27,7 @@ namespace Liliya.Core.API
                     //{
                     //    options.Listen(System.Net.IPAddress.Any, 443, listenOptions =>
                     //      {
-                    //          listenOptions.UseHttps(Path.Combine(AppContext.BaseDirectory, "liliya.work.pfx"), "134116");
+                    //          listenOptions.UseHttps("liliya.work.pfx", "134116");
                     //      });
                     //});
 
