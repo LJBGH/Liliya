@@ -28,8 +28,8 @@ namespace Liliya.Core.API
                     //    options.Listen(System.Net.IPAddress.Any, 443, listenOptions =>
                     //      {
                     //          listenOptions.UseHttps("liliya.work.pfx", "134116");
-                    //      });
-                    //});
+                    //      });                                                           
+                    //})
 
                     //.UseUrls("https://*:443");//手动指定https
 
