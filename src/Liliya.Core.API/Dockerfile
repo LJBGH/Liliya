@@ -11,8 +11,6 @@ ENV ASPNETCORE_URLS https://*:443;http://*:80
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path /app/liliya.work.pfx
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password "134116"
 
-
-
 ENV CATALINA_HOME /usr/local/tomcat
 
 #设置时区
