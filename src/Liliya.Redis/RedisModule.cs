@@ -35,7 +35,7 @@ namespace Liliya.Redis
         {
             service.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = "101.34.154.180:6379";
+                options.Configuration = "localhost:6379";
                 options.InstanceName = "liliya";
             });
         }
