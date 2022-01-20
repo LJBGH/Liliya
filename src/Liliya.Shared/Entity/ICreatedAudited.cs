@@ -12,11 +12,11 @@ namespace Liliya.Shared
         /// <summary>
         /// 创建人Id
         /// </summary>
-        Guid CreatedId { get; set; }
+        Guid CreateUserId { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        DateTime CreatedAt { get; set; }
+        DateTime CreateTime { get; set; }
     }
 }

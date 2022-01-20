@@ -74,28 +74,28 @@ namespace Liliya.Models.Entitys.Sys
         /// </summary>
         [DisplayName("创建人Id")]
         [SugarColumn(ColumnDescription = "创建人Id")]
-        public Guid CreatedId { get; set; }
+        public Guid CreateUserId { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
         [DisplayName("创建时间")]
         [SugarColumn(IsNullable = true, ColumnDescription = "创建时间")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 最后修改人Id
         /// </summary>
         [DisplayName("最后修改人Id")]
         [SugarColumn(IsNullable = true, ColumnDescription = "最后修改人Id")]
-        public Guid? LastModifyId { get; set; }
+        public Guid? LastModifyUserId { get; set; }
 
         /// <summary>
         /// 最后修改时间
         /// </summary>
         [DisplayName("最后修改时间")]
         [SugarColumn(IsNullable = true, ColumnDescription = "最后修改时间")]
-        public DateTime LastModifedAt { get; set; }
+        public DateTime LastModifyTime { get; set; }
 
         /// <summary>
         /// 是否删除

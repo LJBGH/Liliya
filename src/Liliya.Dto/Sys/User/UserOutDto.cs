@@ -54,14 +54,14 @@ namespace Liliya.Dto.Sys.User
         /// 创建时间
         /// </summary>
         [DisplayName("创建时间")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreateTime { get; set; }
 
 
         /// <summary>
         /// 最后修改时间
         /// </summary>
         [DisplayName("最后修改时间")]
-        public DateTime LastModifedAt { get; set; }
+        public DateTime LastModifyTime { get; set; }
 
 
     }

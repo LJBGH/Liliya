@@ -23,8 +23,8 @@ namespace Liliya.Shared
             if (typeof(ICreatedAudited).IsAssignableFrom(typeof(T)))
             {
                 ICreatedAudited createdAudited = (ICreatedAudited)entity;
-                createdAudited.CreatedId = jwtApp.Id;
-                createdAudited.CreatedAt = DateTime.Now;
+                createdAudited.CreateUserId = jwtApp.Id;
+                createdAudited.CreateTime = DateTime.Now;
                 var entity1 = (T)createdAudited;
                 return entity1;
             }
@@ -50,8 +50,8 @@ namespace Liliya.Shared
                 foreach (var item in entitys)
                 {
                     ICreatedAudited createdAudited = (ICreatedAudited)item;
-                    createdAudited.CreatedId = jwtApp.Id;
-                    createdAudited.CreatedAt = DateTime.Now;
+                    createdAudited.CreateUserId = jwtApp.Id;
+                    createdAudited.CreateTime = DateTime.Now;
                     var entity1 = (T)createdAudited;
                     list.Add(entity1);
                 }
@@ -77,8 +77,8 @@ namespace Liliya.Shared
             if (typeof(IModifiedAudited).IsAssignableFrom(typeof(T)))
             {
                 IModifiedAudited modifiedAudited = (IModifiedAudited)entity;
-                modifiedAudited.LastModifyId = jwtApp.Id;
-                modifiedAudited.LastModifedAt = DateTime.Now;
+                modifiedAudited.LastModifyUserId = jwtApp.Id;
+                modifiedAudited.LastModifyTime = DateTime.Now;
                 var entity1 = (T)modifiedAudited;
                 return entity1;
             }
@@ -104,8 +104,8 @@ namespace Liliya.Shared
                 foreach (var item in entitys)
                 {
                     IModifiedAudited modifiedAudited = (IModifiedAudited)item;
-                    modifiedAudited.LastModifyId = jwtApp.Id;
-                    modifiedAudited.LastModifedAt = DateTime.Now;
+                    modifiedAudited.LastModifyUserId = jwtApp.Id;
+                    modifiedAudited.LastModifyTime = DateTime.Now;
                     var entity1 = (T)modifiedAudited;
                     list.Add(entity1);
                 }
