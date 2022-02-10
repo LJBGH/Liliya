@@ -28,23 +28,36 @@ namespace Liliya.Shared
                     {
                         if (!pi.CanWrite) continue;
                         var value = dr[pi.Name];
+
+                        //DBNull.Value,, 是适用于向数据库的表中插入空值。而 null,是指在程序中表示空引用。 或者对象为空。就是没有实例化。
                         if (value != DBNull.Value)
                         {
-                            switch (pi.PropertyType.FullName)
-                            {
-                                case "System.Decimal":
-                                    pi.SetValue(t, decimal.Parse(value.ToString()), null);
-                                    break;
-                                case "System.String":
-                                    pi.SetValue(t, value.ToString(), null);
-                                    break;
-                                case "System.Int32":
-                                    pi.SetValue(t, int.Parse(value.ToString()), null);
-                                    break;
-                                default:
-                                    pi.SetValue(t, value, null);
-                                    break;
-                            }
+                            //if (pi.PropertyType == typeof(int)) 
+                            //{
+                            //    pi.SetValue(t, value, null);
+                            //}
+                            //if (pi.PropertyType == typeof(int))
+                            //{
+                            //    pi.SetValue(t, value, null);
+                            //}
+
+                            pi.SetValue(t, value, null);
+
+                            //switch (pi.PropertyType.FullName)
+                            //{
+                            //    case "System.Decimal":
+                            //        pi.SetValue(t, decimal.Parse(value.ToString()), null);
+                            //        break;
+                            //    case "System.String":
+                            //        pi.SetValue(t, value.ToString(), null);
+                            //        break;
+                            //    case "System.Int32":
+                            //        pi.SetValue(t, int.Parse(value.ToString()), null);
+                            //        break;
+                            //    default:
+                            //        pi.SetValue(t, value, null);
+                            //        break;
+                            //}
                         }
                     }
                 }

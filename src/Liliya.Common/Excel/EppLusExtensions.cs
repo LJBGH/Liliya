@@ -109,7 +109,7 @@ namespace Liliya.Common.Excel
                             col.Property.SetValue(tnew, val.GetValue<bool>());
                             return;
                         }
-                        if (col.Property.PropertyType == typeof(bool?))
+                        if (col.Property.PropertyType == typeof(bool))
                         {
                             col.Property.SetValue(tnew, val.GetValue<bool>());
                             return;
