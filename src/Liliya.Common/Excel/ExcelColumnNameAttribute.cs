@@ -12,18 +12,8 @@ namespace Liliya.Common.Excel
         {
             get;
         }
-        //private string _columnWith2 = "";
-        //public string ColumnName2
-        //{
-        //    get
-        //    {
-        //        return this._columnWith2;
-        //    }
-        //    set
-        //    {
-        //        this._columnWith2 = value;
-        //    }
-        //}
+
+        //列宽
         public int ColumnWith
         {
             get
@@ -53,12 +43,9 @@ namespace Liliya.Common.Excel
             }
         }
 
-        public ExcelColumnNameAttribute(string columnName/*,string  columnName2=""*/)
+        public ExcelColumnNameAttribute(string columnName)
         {
             ColumnName = columnName;
-            //ColumnName2 = columnName2;
         }
-
-
     }
 }

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Liliya.Common.Excel
 {
@@ -33,6 +32,7 @@ namespace Liliya.Common.Excel
             return ToExcelbyByte1(data, excelParameters);
 
         }
+
         /// <summary>
         /// 创建Excel;并返回文件流
         /// </summary>
@@ -111,7 +111,6 @@ namespace Liliya.Common.Excel
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage())
             {
-
                 try
                 {
                     if (data != null && data.Count > 0)
@@ -156,6 +155,8 @@ namespace Liliya.Common.Excel
                 }
             }
         }
+      
+        
         /// <summary>
         /// 创建Excel并保存到服务器
         /// </summary>
@@ -170,6 +171,7 @@ namespace Liliya.Common.Excel
             return SaveExcel(data, excelParameters, FileName, 1, excelVersion, isShow);
 
         }
+        
         /// <summary>
         /// 创建Excel
         /// </summary>
@@ -207,7 +209,7 @@ namespace Liliya.Common.Excel
                         object obj = null;
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("shett1");
 
-                        //(设置表头)传入的列名 col用于得到list的下标，i用于写入Excel的某一列
+                        //(设置表头)传入的列名 col用于得到list的下标，i用于写入Excel的某一列，列头默认从1开始
                         for (int col = 0, i = 1; col < ((ICollection<ExcelParameterVo>)excelParameters).Count; col++, i++)
                         {
                             ExcelParameterVo excelParameterVo = excelParameters[col];//得到列名对象
@@ -221,7 +223,7 @@ namespace Liliya.Common.Excel
                            
                             worksheet.Column(i).Width = excelParameterVo.ColumnWidth;//设置列宽
                         }
-                        //传入的列名 row用于得到data的下标，j用于写入Excel的某一行
+                        //传入的列名 row用于得到data的下标，j用于写入Excel的某一行，从第二行开始写入
                         for (int row = 0, j = 2; row < data.Count; row++, j++)
                         {
                             //传入的列名 col用于得到excelParameters的下标，i用于写入Excel的某一列
@@ -229,12 +231,7 @@ namespace Liliya.Common.Excel
                             {
                                 ExcelParameterVo excelParameterVo = excelParameters[col];//得到列名对象
                                 var item = data[row];
-                                obj = excelParameterVo.Property.GetValue(item);//通过反射获取item
-                                                                               //var type = test as Enum;//通过反射获取字段类型
-                                                                               //if (type.IsEnum)
-                                                                               //{
-                                                                               //obj = type.GetType().GetEnumDescription();
-                                                                               //}
+                                obj = excelParameterVo.Property.GetValue(item);
                                 if (obj == null)//如果obj=null的话该列直接写空
                                 {
                                     worksheet.Cells[j, i].Value = "";
@@ -298,6 +295,7 @@ namespace Liliya.Common.Excel
             return excelParameters;
         }
         #endregion
+
         #region Excel导入
         /// <summary>
         /// 导入Excel文件
@@ -308,12 +306,6 @@ namespace Liliya.Common.Excel
         /// <returns></returns>
         public static List<T> UpLoad(IFormFile file, int sheetIndex)
         {
-            //FileInfo file = new FileInfo(Path.Combine(sWebRootFolder, sFileName));
-            //using (FileStream fs = new FileStream(file.ToString(), FileMode.Create))
-            //{
-            //    excelfile.CopyTo(fs);
-            //    fs.Flush();
-            //}
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage(file.OpenReadStream()))
             {
@@ -323,6 +315,5 @@ namespace Liliya.Common.Excel
             }
         }
         #endregion
-
     }
 }
