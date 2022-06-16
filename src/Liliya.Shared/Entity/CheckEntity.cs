@@ -77,8 +77,8 @@ namespace Liliya.Shared
             if (typeof(IModifiedAudited).IsAssignableFrom(typeof(T)))
             {
                 IModifiedAudited modifiedAudited = (IModifiedAudited)entity;
-                modifiedAudited.LastModifyUserId = jwtApp.Id;
-                modifiedAudited.LastModifyTime = DateTime.Now;
+                modifiedAudited.ModifyUserId = jwtApp.Id;
+                modifiedAudited.ModifyTime = DateTime.Now;
                 var entity1 = (T)modifiedAudited;
                 return entity1;
             }
@@ -104,8 +104,8 @@ namespace Liliya.Shared
                 foreach (var item in entitys)
                 {
                     IModifiedAudited modifiedAudited = (IModifiedAudited)item;
-                    modifiedAudited.LastModifyUserId = jwtApp.Id;
-                    modifiedAudited.LastModifyTime = DateTime.Now;
+                    modifiedAudited.ModifyUserId = jwtApp.Id;
+                    modifiedAudited.ModifyTime = DateTime.Now;
                     var entity1 = (T)modifiedAudited;
                     list.Add(entity1);
                 }

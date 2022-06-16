@@ -31,7 +31,7 @@ namespace Liliya.SqlSugar
             {
                 ConnectionString = conn,//连接符字串
                 DbType = dbType,// DbType.SqlServer,
-                IsAutoCloseConnection = true,
+                IsAutoCloseConnection = true,  //自动关闭连接
                 InitKeyType = InitKeyType.Attribute,//从特性读取主键自增信息
             });
 

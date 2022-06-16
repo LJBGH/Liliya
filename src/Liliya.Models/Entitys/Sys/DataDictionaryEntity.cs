@@ -88,14 +88,14 @@ namespace Liliya.Models.Entitys.Sys
         /// </summary>
         [DisplayName("最后修改人Id")]
         [SugarColumn(IsNullable = true, ColumnDescription = "最后修改人Id")]
-        public Guid? LastModifyUserId { get; set; }
+        public Guid? ModifyUserId { get; set; }
 
         /// <summary>
         /// 最后修改时间
         /// </summary>
         [DisplayName("最后修改时间")]
         [SugarColumn(IsNullable = true, ColumnDescription = "最后修改时间")]
-        public DateTime LastModifyTime { get; set; }
+        public DateTime ModifyTime { get; set; }
 
         /// <summary>
         /// 是否删除

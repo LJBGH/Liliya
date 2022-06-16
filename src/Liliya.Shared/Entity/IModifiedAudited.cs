@@ -9,11 +9,11 @@ namespace Liliya.Shared
         /// <summary>
         /// 最后修改人Id
         /// </summary>
-        Guid? LastModifyUserId { get; set; }
+        Guid? ModifyUserId { get; set; }
 
         /// <summary>
         /// 最后修改时间
         /// </summary>
-        DateTime LastModifyTime { get; set; }
+        DateTime ModifyTime { get; set; }
     }
 }
