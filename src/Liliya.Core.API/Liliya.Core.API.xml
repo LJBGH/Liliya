@@ -148,6 +148,13 @@
             <param name="environment"></param>
             <returns></returns>
         </member>
+        <member name="M:Liliya.Core.API.Controllers.Sys.UserController.ExportUserTest(Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            用户信息导出测试
+            </summary>
+            <param name="environment"></param>
+            <returns></returns>
+        </member>
         <member name="M:Liliya.Core.API.Controllers.Sys.UserController.TestAsync">
             <summary>
             测试接口

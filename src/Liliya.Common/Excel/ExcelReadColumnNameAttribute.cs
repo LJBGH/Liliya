@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Liliya.Common.Excel
 {
+    /// <summary>
+    /// 导入属性
+    /// </summary>
     public class ExcelReadColumnNameAttribute : System.Attribute
     {
         public int Index

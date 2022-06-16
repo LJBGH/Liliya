@@ -46,5 +46,17 @@ namespace Liliya.Common.Excel
         /// 是否显示
         /// </summary>
         public bool ShowState { get; set; }
+
+        /// <summary>
+        /// 是否为超链接
+        /// </summary>
+        public bool IsHyperLink { get; set; }
+
+        /// <summary>
+        /// 超链接
+        /// </summary>
+        public string HyperLink { get; set; }
+
+
     }
 }

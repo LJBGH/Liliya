@@ -4,16 +4,28 @@ using System.Text;
 
 namespace Liliya.Common.Excel
 {
+    /// <summary>
+    /// 导出属性
+    /// </summary>
     public class ExcelColumnNameAttribute : System.Attribute
     {
         private int _columnWith = 20;
         private bool _showState = true;
+        private string _hyperlink = null;
+
+        public ExcelColumnNameAttribute(string columnName)
+        {
+            ColumnName = columnName;
+        }
+
         public string ColumnName
         {
             get;
         }
 
-        //列宽
+        /// <summary>
+        /// 列宽
+        /// </summary>
         public int ColumnWith
         {
             get
@@ -25,12 +37,17 @@ namespace Liliya.Common.Excel
                 this._columnWith = value;
             }
         }
+        /// <summary>
+        /// 排序
+        /// </summary>
         public int Sort
         {
             get;
             set;
         }
-
+        /// <summary>
+        /// 状态
+        /// </summary>
         public bool ShowState
         {
             get
@@ -42,10 +59,19 @@ namespace Liliya.Common.Excel
                 this._showState = value;
             }
         }
-
-        public ExcelColumnNameAttribute(string columnName)
+        /// <summary>
+        /// 超链接
+        /// </summary>
+        public string HyperLink 
         {
-            ColumnName = columnName;
+            get 
+            {
+                return _hyperlink;
+            }
+            set 
+            {
+                this._hyperlink = value;
+            }
         }
     }
 }

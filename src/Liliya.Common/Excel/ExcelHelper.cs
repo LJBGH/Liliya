@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -13,6 +14,7 @@ namespace Liliya.Common.Excel
     /// </summary>
     public class ExcelHelper<T> where T : class, new()
     {
+
         #region 导出Excel
         /// <typeparam name="T">泛型实体类</typeparam>
         /// <param name="data">泛型列表对象</param>
@@ -30,7 +32,6 @@ namespace Liliya.Common.Excel
             //获取泛型实体类的所有列头
             List<ExcelParameterVo> excelParameters = GetExcelParameters();
             return ToExcelbyByte1(data, excelParameters);
-
         }
 
         /// <summary>
@@ -97,6 +98,7 @@ namespace Liliya.Common.Excel
             }
 
         }
+       
         /// <summary>
         /// 创建Excel;并返回文件流
         /// </summary>
@@ -234,11 +236,27 @@ namespace Liliya.Common.Excel
                                 obj = excelParameterVo.Property.GetValue(item);
                                 if (obj == null)//如果obj=null的话该列直接写空
                                 {
-                                    worksheet.Cells[j, i].Value = "";
+                                    worksheet.Cells[j,i].Value = "";
                                 }
                                 else
                                 {
-                                    worksheet.Cells[j, i].Value = obj.ToString();
+                                    //设置超链接
+                                    if (excelParameterVo.IsHyperLink)
+                                    {
+                                        //超链接样式
+                                        var namedStyle = worksheet.Workbook.Styles.CreateNamedStyle("HyperLink");
+                                        namedStyle.Style.Font.UnderLine = true;
+                                        namedStyle.Style.Font.Color.SetColor(Color.Blue);
+                                        namedStyle.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;//
+                                        worksheet.Cells[j, i].StyleName = namedStyle.Name;
+                                        worksheet.Cells[j, i].Hyperlink = new ExcelHyperLink("https://www.baidu.com/");
+                                        worksheet.Cells[j, i].Value = obj.ToString();
+                                    }
+                                    else 
+                                    {
+                                        worksheet.Cells[j, i].Value = obj.ToString();
+                                        worksheet.Cells[j, i].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;//水平居中
+                                    }
                                 }
                             }
                         }
@@ -259,7 +277,6 @@ namespace Liliya.Common.Excel
                     package.SaveAs(fileInfo);
                 }
                 return FileName;
-
             }
             catch (Exception ex)
             {
@@ -288,7 +305,9 @@ namespace Liliya.Common.Excel
                         ColumnWidth = excelColumnNameAttribute.ColumnWith,
                         Sort = excelColumnNameAttribute.Sort,
                         Property = propertyInfo,
-                        ShowState = excelColumnNameAttribute.ShowState
+                        ShowState = excelColumnNameAttribute.ShowState,
+                        IsHyperLink = !string.IsNullOrEmpty(excelColumnNameAttribute.HyperLink) ? true : false,
+                        HyperLink = excelColumnNameAttribute.HyperLink
                     });
                 }
             }

@@ -46,7 +46,7 @@ namespace Liliya.Dto.Sys.User
         /// 职位
         /// </summary>
         [DisplayName("职位")]
-        [ExcelColumnName("职位", ColumnWith = 20, Sort = 5)]
+        [ExcelColumnName("职位", ColumnWith = 20, Sort = 5,HyperLink = "https://www.baidu.com/")]
         public string Position { get; set; }
     }
 }

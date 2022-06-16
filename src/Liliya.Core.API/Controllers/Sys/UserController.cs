@@ -136,6 +136,40 @@ namespace Liliya.Core.API.Controllers.Sys
 
 
         /// <summary>
+        /// 用户信息导出测试
+        /// </summary>
+        /// <param name="environment"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<FileResult> ExportUserTest([FromServices] IWebHostEnvironment environment) 
+        {
+            await Task.CompletedTask;
+            var userList = new List<UserExportDto>()
+            {
+                new UserExportDto
+                {
+                     Account  = "LiShen",
+                     Name = "李仏",
+                     JobNumber = "001",
+                     Department = "研发部",
+                     Position = "架构师"     
+                }
+            };
+
+            string folderpath = Path.Combine(environment.WebRootPath, $"export");
+
+            var fileName = $"用户信息-{DateTime.Now.ToString("yyyyMMddhhmmss")}-{RandomExtensions.GetRandom()}.xlsx";
+
+            var file = ExcelHelper<UserExportDto>.SaveExcel(userList, $"{folderpath}\\{fileName}");
+
+            var filestream = new FileStream(file, FileMode.Open);
+
+            return File(filestream, "application/vnd.ms-excel", fileName);
+        }
+
+
+        /// <summary>
         /// 测试接口
         /// </summary>
         /// <returns></returns>
