@@ -20,8 +20,7 @@ namespace Liliya.WebSockets.WatsonWebSocket
             server.ClientConnected += ClientConnected;
             server.ClientDisconnected += ClientDisconnected;
             server.MessageReceived += MessageReceived;
-            server.Start();
-            
+            server.Start();   
         }
 
 
@@ -55,9 +54,5 @@ namespace Liliya.WebSockets.WatsonWebSocket
         {
             Console.WriteLine("Message received from " + args.IpPort + ": " + Encoding.UTF8.GetString(args.Data));
         }
-
-
-
     }
-
 }

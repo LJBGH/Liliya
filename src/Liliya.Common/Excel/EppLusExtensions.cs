@@ -43,13 +43,12 @@ namespace Liliya.Common.Excel
                     columns.ForEach(col =>
                     {
                         var val = excelWorksheet.Cells[row, col.Column.GetColumnByName(excelWorksheet)];
-                        //var val = excelWorksheet.Cells[row, GetColumnByName(excelWorksheet, col.Column)];
                         if (val.Value == null)
                         {
                             col.Property.SetValue(tnew, null);
                             return;
                         }
-                        // 如果Person类的对应字段是int的，该怎么怎么做……
+                        // 如果Person类的对应字段是int的
                         if (col.Property.PropertyType == typeof(int))
                         {
                             col.Property.SetValue(tnew, val.GetValue<int>());
@@ -80,7 +79,7 @@ namespace Liliya.Common.Excel
                             col.Property.SetValue(tnew, val.GetValue<decimal?>());
                             return;
                         }
-                        // 如果Person类的对应字段是double的，该怎么怎么做……
+                        // 如果Person类的对应字段是double
                         if (col.Property.PropertyType == typeof(double))
                         {
                             col.Property.SetValue(tnew, val.GetValue<double>());
@@ -91,19 +90,19 @@ namespace Liliya.Common.Excel
                             col.Property.SetValue(tnew, val.GetValue<double?>());
                             return;
                         }
-                        // 如果Person类的对应字段是DateTime?的，该怎么怎么做……
+                        // 如果Person类的对应字段是DateTime?
                         if (col.Property.PropertyType == typeof(DateTime?))
                         {
                             col.Property.SetValue(tnew, val.GetValue<DateTime?>());
                             return;
                         }
-                        // 如果Person类的对应字段是DateTime的，该怎么怎么做……
+                        // 如果Person类的对应字段是DateTime
                         if (col.Property.PropertyType == typeof(DateTime))
                         {
                             col.Property.SetValue(tnew, val.GetValue<DateTime>());
                             return;
                         }
-                        // 如果Person类的对应字段是bool的，该怎么怎么做……
+                        // 如果Person类的对应字段是bool
                         if (col.Property.PropertyType == typeof(bool?))
                         {
                             col.Property.SetValue(tnew, val.GetValue<bool>());

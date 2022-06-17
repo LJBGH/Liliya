@@ -95,6 +95,7 @@ namespace Liliya.Core.API.Controllers.Sys
         /// <param name="file"></param>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public async Task<List<UserImportDto>> ParseUserExcelAsync(IFormFile file)
         {
             await Task.CompletedTask;
@@ -112,6 +113,7 @@ namespace Liliya.Core.API.Controllers.Sys
         {
             return await _userService.ImportUserAsync(input);
         }
+
 
         /// <summary>
         /// 用户信息导出
